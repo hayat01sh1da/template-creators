@@ -10,8 +10,8 @@ module TemplateCreator
     def initialize(unit, year)
       @unit = unit
       Integer(year)
-      raise 'Invalid value of year was provided.' if year.size > 4
-      raise 'Older year than the current one was provided.' if year.to_i < Time.now.year
+      raise 'Year must be 4 digits' if year.size > 4
+      raise 'Provide newer than or equal to the current year' if year.to_i < Time.now.year
       @year = year
     end
 

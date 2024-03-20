@@ -31,7 +31,7 @@ class TestApplication(unittest.TestCase):
     ########## Irregular Cases ##########
 
     def test_initialize_with_invalid_unit(self):
-        with self.assertRaises(TypeError, msg = 'Invalid unit was provided.'):
+        with self.assertRaises(TypeError, msg = 'Provide d, w or y as a valid unit'):
             Application(unit = 'foobar', year = self.year).run()
 
     def test_initialize_with_non_digit_argument(self):
@@ -39,11 +39,11 @@ class TestApplication(unittest.TestCase):
             Application(year = 'foobar')
 
     def test_initialize_with_invalid_value_as_year(self):
-        with self.assertRaises(TypeError, msg = 'Invalid value of year was provided.'):
+        with self.assertRaises(TypeError, msg = 'Year must be 4 digits'):
             Application(year = '20233')
 
     def test_initialize_with_older_year(self):
-        with self.assertRaises(TypeError, msg = 'Older year than the current one was provided.'):
+        with self.assertRaises(TypeError, msg = 'Provide newer than or equal to the current year'):
             Application(year = '2022')
 
     def tearDown(self):

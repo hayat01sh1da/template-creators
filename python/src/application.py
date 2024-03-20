@@ -7,9 +7,9 @@ class Application:
         self.unit = unit
         int(year)
         if len(year) > 4:
-            raise 'Invalid value of year was provided.'
+            raise 'Year must be 4 digits'
         if int(year) < int(datetime.date.today().strftime('%Y')):
-            raise 'Older year than the current one was provided.'
+            raise 'Provide newer than or equal to the current year'
         self.year   = year
         self.months = list()
         for i in range(1, 13):
@@ -38,7 +38,7 @@ class Application:
                 case 'm':
                     self.__export_template__(directory = directory, index = index, month = month)
                 case _:
-                    raise 'Invalid unit was provided.'
+                    raise 'Provide d, w or y as a valid unit'
 
     # private
 

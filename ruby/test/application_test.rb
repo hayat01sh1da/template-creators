@@ -30,7 +30,7 @@ class ApplicationTest < Minitest::Test
     e = assert_raises RuntimeError do
       ::TemplateCreator::Application.run(unit: 'foobar', year: year)
     end
-    assert_equal(e.message, 'Invalid unit was provided.')
+    assert_equal(e.message, 'Provide d, w or y as a valid unit')
   end
 
   def test_initialize_with_non_digit_argument
@@ -44,14 +44,14 @@ class ApplicationTest < Minitest::Test
     e = assert_raises RuntimeError do
       ::TemplateCreator::Application.run(year: '20233')
     end
-    assert_equal(e.message, 'Invalid value of year was provided.')
+    assert_equal(e.message, 'Year must be 4 digits')
   end
 
   def test_initialize_with_older_year
     e = assert_raises RuntimeError do
       ::TemplateCreator::Application.run(year: '2022')
     end
-    assert_equal(e.message, 'Older year than the current one was provided.')
+    assert_equal(e.message, 'Provide newer than or equal to the current year')
   end
 
   def teardown
