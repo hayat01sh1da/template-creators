@@ -4,14 +4,11 @@ require 'fileutils'
 module TemplateCreator
   class Application
     def self.run(unit: 'd', year: Time.now.year.to_s)
-      self.new(unit, year).run
+      self.new(validate_unit!(unit), validate_year!(year)).run
     end
 
     def initialize(unit, year)
       @unit = unit
-      Integer(year)
-      raise 'Year must be 4 digits' if year.size > 4
-      raise 'Provide newer than or equal to the current year' if year.to_i < Time.now.year
       @year = year
     end
 
@@ -33,8 +30,6 @@ module TemplateCreator
           }
         when 'm'
           export_template(directory, index, month)
-        else
-          raise 'Invalid unit was provided.'
         end
       }
     end
@@ -42,6 +37,28 @@ module TemplateCreator
     private
 
     attr_reader :unit, :year
+
+    class << self
+      def validate_unit!(unit)
+        case unit
+        when 'd', 'w', 'm'
+          unit
+        else
+          raise 'Provide d, w or y as a valid unit'
+        end
+      end
+
+      def validate_year!(year)
+        Integer(year)
+        if year.length > 4
+          raise 'Year must be 4 digits'
+        elsif year.to_i < Time.now.year
+          raise 'Provide newer than or equal to the current year'
+        else
+          year
+        end
+      end
+    end
 
     def is_saturday?(month, day)
       Time.new(year, month, day).saturday?
