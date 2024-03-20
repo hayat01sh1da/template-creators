@@ -3,11 +3,11 @@ require_relative './src/application'
 unit, year, *_ = ARGV
 
 if unit && year
-  ::TemplateCreator::Application.run(unit: unit, year: year)
+  ::TemplateCreator::Application.run(unit:, year:)
 elsif unit
-  ::TemplateCreator::Application.run(unit: unit)
+  ::TemplateCreator::Application.run(unit:)
 elsif year
-  ::TemplateCreator::Application.run(year: year)
+  ::TemplateCreator::Application.run(year:)
 else
   ::TemplateCreator::Application.run
 end
