@@ -8,8 +8,9 @@ from application import Application
 
 class TestApplication(unittest.TestCase):
     def setUp(self):
-        self.year     = '2100'
-        self.base_dir = os.path.join('.', 'summary_of_news_articles')
+        self.year           = '2100'
+        self.base_dir       = os.path.join('..', 'summary_of_news_articles')
+        self.template_files = os.path.join('..', 'summary_of_news_articles', self.year, '**', '*.md')
 
     ########## Regular Cases ##########
 
@@ -56,15 +57,15 @@ class TestApplication(unittest.TestCase):
     # private
 
     def _check_template_files(self, unit):
-        filepath = os.path.join('.', 'test', 'checking_files', '{unit}_templates.txt'.format(unit = unit))
+        filepath = os.path.join('..', 'testing_file_lists', '{unit}_templates.txt'.format(unit = unit))
         with open(filepath) as f:
             expected_templates = f.read().split('\n')
         expected_templates.pop()
-        actual_templates = glob.glob(os.path.join('.', 'summary_of_news_articles', self.year, '**', '*.md'))
+        actual_templates = glob.glob(os.path.join(self.template_files))
         self.assertListEqual(expected_templates, actual_templates)
 
     def _has_no_template(self):
-        len(glob.glob(os.path.join('.', 'summary_of_news_articles', '**', '*.md'))) == 0
+        len(glob.glob(os.path.join(self.template_files))) == 0
 
 if __name__ == '__main__':
     unittest.main()

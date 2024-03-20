@@ -3,8 +3,9 @@ require_relative '../src/application'
 
 class ApplicationTest < Minitest::Test
   def setup
-    @year     = '2100'
-    @base_dir = File.join('.', 'summary_of_news_articles')
+    @year           = '2100'
+    @base_dir       = File.join('..', 'summary_of_news_articles')
+    @template_files = File.join(base_dir, year, '**', '*.md')
   end
 
   ########## Regular Cases ##########
@@ -62,16 +63,16 @@ class ApplicationTest < Minitest::Test
 
   private
 
-  attr_reader :year, :base_dir
+  attr_reader :year, :base_dir, :template_files
 
   def check_template_files(unit)
-    filepath           = File.join('.', 'test', 'checking_files', "#{unit}_templates.txt")
+    filepath           = File.join('..', 'testing_file_lists', "#{unit}_templates.txt")
     expected_templates = File.open(filepath).read.split("\n")
-    actual_templates   = Dir[File.join(base_dir, year, '**', '*.md')]
+    actual_templates   = Dir[template_files]
     assert_equal(expected_templates, actual_templates)
   end
 
   def no_template?
-    Dir[File.join('.', 'summary_of_news_articles', '**', '*md')].empty?
+    Dir[template_files].empty?
   end
 end
