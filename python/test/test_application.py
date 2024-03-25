@@ -17,17 +17,17 @@ class TestApplication(unittest.TestCase):
     def test_run_by_daily_unit(self):
         app = Application(unit = 'd', year = self.year)
         app.run()
-        self._check_template_files('daily')
+        self.__check_template_files__('daily')
 
     def test_run_by_weekly_unit(self):
         app = Application(unit = 'w', year = self.year)
         app.run()
-        self._check_template_files('weekly')
+        self.__check_template_files__('weekly')
 
     def test_run_by_monthly_unit(self):
         app = Application(unit = 'm', year = self.year)
         app.run()
-        self._check_template_files('monthly')
+        self.__check_template_files__('monthly')
 
     ########## Irregular Cases ##########
 
@@ -51,12 +51,12 @@ class TestApplication(unittest.TestCase):
         destination_dir = os.path.join(self.base_dir, self.year)
         if os.path.isdir(destination_dir):
             shutil.rmtree(destination_dir)
-        if self._has_no_template():
+        if self.__has_no_template__():
             shutil.rmtree(self.base_dir)
 
     # private
 
-    def _check_template_files(self, unit):
+    def __check_template_files__(self, unit):
         filepath = os.path.join('..', 'testing_file_lists', '{unit}_templates.txt'.format(unit = unit))
         with open(filepath) as f:
             expected_templates = f.read().split('\n')
@@ -64,7 +64,7 @@ class TestApplication(unittest.TestCase):
         actual_templates = glob.glob(os.path.join(self.template_files))
         self.assertListEqual(expected_templates, actual_templates)
 
-    def _has_no_template(self):
+    def __has_no_template__(self):
         len(glob.glob(os.path.join(self.template_files))) == 0
 
 if __name__ == '__main__':
