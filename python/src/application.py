@@ -93,15 +93,62 @@ class Application:
         return int(self.year) % 400 == 0 or (int(self.year) % 100 != 0 and int(self.year) % 4 == 0)
 
     def __body__(self, date):
-        text =  "# Summary of Today's News Articles on {date}\n\n".format(date = date)
-        text += '## 1. Pick-Up Articles\n\n'
-        text += '- [ARTICLE](url)\n'
-        text += '- [ARTICLE](url)\n'
-        text += '- [ARTICLE](url)\n\n'
-        text += '## 2. Summary\n\n'
-        text += 'SUMMARY\n\n'
-        text += '## 3. Discussion\n\n'
-        text += 'DISCUSSION\n'
+        text =  "# 日報 on {date}\n\n".format(date = date)
+        text += "## 1. 本営業日の作業\n\n"
+        text += "### 1-1. [PBI/SBI](URL)\n\n"
+        text += "- 作業進捗: 〇/100%({STATUS})\n"
+        text += "- 完了時期目安: TBA\n"
+        text += "- 残作業\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "- 困りごと・ブロッカー\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "### 1-2 [PBI/SBI](url)\n\n"
+        text += "- 作業進捗: 〇/100%({STATUS})\n"
+        text += "- 完了時期目安: TBA\n"
+        text += "- 残作業\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "- 困りごと・ブロッカー\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "### 1-3. [PBI/SBI](url)\n\n"
+        text += "- 作業進捗: 〇/100%({STATUS})\n"
+        text += "- 完了時期目安: TBA\n"
+        text += "- 残作業\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "- 困りごと・ブロッカー\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "## 2. 翌営業日の作業予定\n\n"
+        text += "### 2-1. [PBI/SBI](URL)\n\n"
+        text += "- 目標作業進捗: 〇/100%({STATUS})\n"
+        text += "- 予予定作業\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "### 2-2 [PBI/SBI](url)\n\n"
+        text += "- 作業進捗: 〇/100%({STATUS})\n"
+        text += "- 完了時期目安: TBA\n"
+        text += "- 目標作業進捗: 〇/100%({STATUS})\n"
+        text += "- 予予定作業\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "### 2-3. [PBI/SBI](url)\n\n"
+        text += "- 目標作業進捗: 〇/100%({STATUS})\n"
+        text += "- 予予定作業\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
+        text += "  - TBA\n"
         return text
 
     def __export_template__(self, directory, index, day = '', month = ''):
