@@ -26,7 +26,7 @@ class Application:
     def run(self):
         for i, month in enumerate(self.months):
             index     = '{:02}'.format(i + 1)
-            directory = os.path.join('..', self.username, 'working_report', '{year}'.format(year = self.year), '{index}_{month}'.format(index = index, month = month))
+            directory = os.path.join('..', 'working_report', self.username, '{year}'.format(year = self.year), '{index}_{month}'.format(index = index, month = month))
             match self.unit:
                 case 'd' | 'w':
                     for d in range(1, 32):
