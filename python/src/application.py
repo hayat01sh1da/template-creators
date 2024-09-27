@@ -3,25 +3,30 @@ import datetime
 import calendar
 
 class Application:
-    def __init__(self, unit = 'd', year = datetime.date.today().strftime('%Y')):
-        UNITS = ('d', 'w', 'm')
-        if not unit in UNITS:
-            raise ValueError('Provide d, w or y as a valid unit')
+    def __init__(self, username = 'hayat01sh1da', unit = 'd', year = datetime.date.today().strftime('%Y')):
+        USERNAMES = ('hayat01sh1da')
+        if not username in USERNAMES:
+            raise ValueError('{username} is NOT an allowed value'.format(username = username))
+        match unit:
+            case 'd' | 'w' | 'm':
+                self.unit = unit
+            case _:
+                raise ValueError('Provide d, w or y as a valid unit')
         int(year)
         if len(year) > 4:
             raise ValueError('Year must be 4 digits')
         if int(year) < int(datetime.date.today().strftime('%Y')):
             raise ValueError('Provide newer than or equal to the current year')
-        self.unit   = unit
-        self.year   = year
-        self.months = list()
+        self.username = username
+        self.year     = year
+        self.months   = list()
         for i in range(1, 13):
             self.months.append(calendar.month_name[i])
 
     def run(self):
         for i, month in enumerate(self.months):
             index     = '{:02}'.format(i + 1)
-            directory = os.path.join('..', 'summary_of_news_articles', '{year}'.format(year = self.year), '{index}_{month}'.format(index = index, month = month))
+            directory = os.path.join('..', self.username, 'summary_of_news_articles', '{year}'.format(year = self.year), '{index}_{month}'.format(index = index, month = month))
             match self.unit:
                 case 'd' | 'w':
                     for d in range(1, 32):

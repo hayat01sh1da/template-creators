@@ -3,13 +3,16 @@ sys.path.append('./src')
 from application import Application
 
 try:
-    _, unit, year, *_ = sys.argv
+    _, username, unit, year, *_ = sys.argv
 except ValueError:
-    unit = None
-    year = None
+    username = None
+    unit     = None
+    year     = None
 
-if unit and year:
-    app = Application(unit = unit, year = year)
+if username and unit and year:
+    app = Application(username = username, unit = unit, year = year)
+elif username:
+    app = Application(username = username)
 elif unit:
     app = Application(unit = unit)
 elif year:

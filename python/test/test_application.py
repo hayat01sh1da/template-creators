@@ -8,44 +8,49 @@ from application import Application
 
 class TestApplication(unittest.TestCase):
     def setUp(self):
+        self.username       = 'hayat01sh1da'
         self.year           = '2100'
-        self.base_dir       = os.path.join('..', 'summary_of_news_articles')
-        self.template_files = os.path.join('..', 'summary_of_news_articles', self.year, '**', '*.md')
+        self.base_dir       = os.path.join('..', self.username, 'summary_of_news_articles')
+        self.template_files = os.path.join('..', self.username, 'summary_of_news_articles', self.year, '**', '*.md')
 
     ########## Regular Cases ##########
 
     def test_run_by_daily_unit(self):
-        app = Application(unit = 'd', year = self.year)
+        app = Application(username = self.username, unit = 'd', year = self.year)
         app.run()
         self.__check_template_files__('daily')
 
     def test_run_by_weekly_unit(self):
-        app = Application(unit = 'w', year = self.year)
+        app = Application(username = self.username, unit = 'w', year = self.year)
         app.run()
         self.__check_template_files__('weekly')
 
     def test_run_by_monthly_unit(self):
-        app = Application(unit = 'm', year = self.year)
+        app = Application(username = self.username, unit = 'm', year = self.year)
         app.run()
         self.__check_template_files__('monthly')
 
     ########## Irregular Cases ##########
 
+    def test_initialize_with_invalid_username(self):
+        with self.assertRaises(ValueError, msg = 'InvalidUsername is NOT an allowed value'):
+            Application(username = 'InvalidUsername', unit = 'foobar', year = self.year).run()
+
     def test_initialize_with_invalid_unit(self):
         with self.assertRaises(ValueError, msg = 'Provide d, w or y as a valid unit'):
-            Application(unit = 'foobar', year = self.year).run()
+            Application(username = self.username, unit = 'foobar', year = self.year).run()
 
     def test_initialize_with_non_digit_argument(self):
         with self.assertRaises(ValueError, msg = 'invalid literal for int() with base 10: "foobar"'):
-            Application(year = 'foobar')
+            Application(username = self.username, year = 'foobar')
 
     def test_initialize_with_invalid_value_as_year(self):
         with self.assertRaises(ValueError, msg = 'Year must be 4 digits'):
-            Application(year = '20233')
+            Application(username = self.username, year = '20233')
 
     def test_initialize_with_older_year(self):
         with self.assertRaises(ValueError, msg = 'Provide newer than or equal to the current year'):
-            Application(year = '2022')
+            Application(username = self.username, year = '2022')
 
     def tearDown(self):
         destination_dir = os.path.join(self.base_dir, self.year)

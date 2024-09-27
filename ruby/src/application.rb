@@ -3,16 +3,24 @@ require 'fileutils'
 
 module TemplateCreator
   class Application
-    def self.run(unit: 'd', year: Time.now.year.to_s)
-      instance = new(unit, year)
+    USERNAMES = ['hayat01sh1da'].freeze
+
+    def self.run(username: 'hayat01sh1da', unit: 'd', year: Time.now.year.to_s)
+      instance = new(username, unit, year)
+      instance.validate_username!(username)
       instance.validate_unit!(unit)
       instance.validate_year!(year)
       instance.run
     end
 
-    def initialize(unit, year)
-      @unit = unit
-      @year = year
+    def initialize(username, unit, year)
+      @username = username
+      @unit     = unit
+      @year     = year
+    end
+
+    def validate_username!(username)
+      raise "#{username} is NOT an allowed value" unless USERNAMES.include?(username)
     end
 
     def validate_unit!(unit)
@@ -38,7 +46,7 @@ module TemplateCreator
     def run
       Date::MONTHNAMES.compact.each.with_index(1) { |month, i|
         index     = sprintf('%02d', i)
-        directory = File.join('..', 'summary_of_news_articles', year, "#{index}_#{month}")
+        directory = File.join('..', username, 'summary_of_news_articles', year, "#{index}_#{month}")
         case unit
         when 'd', 'w'
           create_templates(month) { |d|
@@ -59,7 +67,7 @@ module TemplateCreator
 
     private
 
-    attr_reader :unit, :year
+    attr_reader :username, :unit, :year
 
     def is_saturday?(month, day)
       Time.new(year, month, day).saturday?
