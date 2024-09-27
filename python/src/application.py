@@ -4,12 +4,15 @@ import calendar
 
 class Application:
     def __init__(self, unit = 'd', year = datetime.date.today().strftime('%Y')):
-        self.unit = unit
+        UNITS = ('d', 'w', 'm')
+        if not unit in UNITS:
+            raise ValueError('Provide d, w or y as a valid unit')
         int(year)
         if len(year) > 4:
             raise ValueError('Year must be 4 digits')
         if int(year) < int(datetime.date.today().strftime('%Y')):
             raise ValueError('Provide newer than or equal to the current year')
+        self.unit   = unit
         self.year   = year
         self.months = list()
         for i in range(1, 13):
