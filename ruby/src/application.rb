@@ -46,7 +46,7 @@ module TemplateCreator
     def run
       Date::MONTHNAMES.compact.each.with_index(1) { |month, i|
         index     = sprintf('%02d', i)
-        directory = File.join('..', username, 'summary_of_news_articles', year, "#{index}_#{month}")
+        directory = File.join('..', username, 'working_report', year, "#{index}_#{month}")
         case unit
         when 'd', 'w'
           create_templates(month) { |d|
@@ -68,6 +68,17 @@ module TemplateCreator
     private
 
     attr_reader :username, :unit, :year
+
+    def full_unit
+      case unit
+      when 'd'
+        'daily'
+      when 'w'
+        'weekly'
+      when 'm'
+        'monthly'
+      end
+    end
 
     def is_monday?(month, day)
       Time.new(year, month, day).monday?
@@ -101,7 +112,7 @@ module TemplateCreator
       date     =  ''
       date     << "#{day} " unless day.empty?
       date     << "#{month} #{year}"
-      filename = File.join(directory, "#{year}#{index}#{day}_summary_of_news_articles.md")
+      filename = File.join(directory, "#{year}#{index}#{day}_#{full_unit}_working_report.md")
       FileUtils.mkdir_p(directory) unless Dir.exist?(directory)
       IO.write(filename, body(date)) unless File.exist?(filename)
     end

@@ -26,7 +26,7 @@ class Application:
     def run(self):
         for i, month in enumerate(self.months):
             index     = '{:02}'.format(i + 1)
-            directory = os.path.join('..', self.username, 'summary_of_news_articles', '{year}'.format(year = self.year), '{index}_{month}'.format(index = index, month = month))
+            directory = os.path.join('..', self.username, 'working_report', '{year}'.format(year = self.year), '{index}_{month}'.format(index = index, month = month))
             match self.unit:
                 case 'd' | 'w':
                     for d in range(1, 32):
@@ -49,6 +49,15 @@ class Application:
                     raise ValueError('Provide d, w or y as a valid unit')
 
     # private
+
+    def __full_unit__(self):
+        match self.unit:
+            case 'd':
+                return 'daily'
+            case 'w':
+                return 'weekly'
+            case 'm':
+                return 'monthly'
 
     def __is_monday__(self, month, day):
         # 0: Monday
@@ -100,7 +109,7 @@ class Application:
         if not len(day) == 0:
             date += '{day} '.format(day = day)
         date += '{month} {year}'.format(month = month, year = self.year)
-        filename = os.path.join(directory, '{year}{index}{day}_summary_of_news_articles.md'.format(year = self.year, index = index, day = day))
+        filename = os.path.join(directory, '{year}{index}{day}_{full_unit}_working_report.md'.format(year = self.year, index = index, day = day, full_unit = self.__full_unit__()))
         if not os.path.isdir(directory):
             os.makedirs(directory)
         with open(filename, 'w') as f:

@@ -10,8 +10,8 @@ class TestApplication(unittest.TestCase):
     def setUp(self):
         self.username       = 'hayat01sh1da'
         self.year           = '2100'
-        self.base_dir       = os.path.join('..', self.username, 'summary_of_news_articles')
-        self.template_files = os.path.join('..', self.username, 'summary_of_news_articles', self.year, '**', '*.md')
+        self.base_dir       = os.path.join('..', self.username, 'working_report')
+        self.template_files = os.path.join('..', self.username, 'working_report', self.year, '**', '*.md')
 
     ########## Regular Cases ##########
 
