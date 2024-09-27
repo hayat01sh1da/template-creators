@@ -50,6 +50,16 @@ class Application:
 
     # private
 
+    def __is_monday__(self, month, day):
+        # 0: Monday
+        # 1: Tuesday
+        # 2: Wednesday
+        # 3: Thursday
+        # 4: Friday
+        # 5: Saturday
+        # 6: Sunday
+        return datetime.date(int(self.year), month, day).weekday() == 0
+
     def __is_saturday__(self, month, day):
         # 0: Monday
         # 1: Tuesday
@@ -99,12 +109,12 @@ class Application:
     def __create_template__(self, d, directory, index, month):
         day = '{:02}'.format(d)
         if self.unit == 'd':
-            if self.__is_sunday__(int(index), d):
+            if self.__is_saturday__(int(index), d) or self.__is_sunday__(int(index), d):
                 return
             else:
                 self.__export_template__(directory, index, day, month)
         else:
-            if not self.__is_saturday__(int(index), d):
+            if not self.__is_monday__(int(index), d):
                 return
             else:
                 self.__export_template__(directory, index, day, month)

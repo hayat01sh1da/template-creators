@@ -52,10 +52,10 @@ module TemplateCreator
           create_templates(month) { |d|
             day = sprintf('%02d', d)
             if unit == 'd'
-              next if is_sunday?(i, d)
+              next if is_saturday?(i, d) || is_sunday?(i, d)
               export_template(directory, index, day, month)
             else
-              next unless is_saturday?(i, d)
+              next unless is_monday?(i, d)
               export_template(directory, index, day, month)
             end
           }
@@ -68,6 +68,10 @@ module TemplateCreator
     private
 
     attr_reader :username, :unit, :year
+
+    def is_monday?(month, day)
+      Time.new(year, month, day).monday?
+    end
 
     def is_saturday?(month, day)
       Time.new(year, month, day).saturday?
