@@ -46,7 +46,7 @@ module TemplateCreator
     def run
       Date::MONTHNAMES.compact.each.with_index(1) { |month, i|
         index     = sprintf('%02d', i)
-        directory = File.join('..', 'working_report', username, year, "#{index}_#{month}")
+        directory = File.join('..', '..', 'working_report', username, year, "#{index}_#{month}")
         case unit
         when 'd', 'w'
           create_templates(month) { |d|

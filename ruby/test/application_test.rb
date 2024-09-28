@@ -5,7 +5,7 @@ class ApplicationTest < Minitest::Test
   def setup
     @username       = 'hayat01sh1da'
     @year           = '2100'
-    @base_dir       = File.join('..', 'working_report', username)
+    @base_dir       = File.join('..', '..', 'working_report', username)
     @template_files = File.join(base_dir, year, '**', '*.md')
   end
 
