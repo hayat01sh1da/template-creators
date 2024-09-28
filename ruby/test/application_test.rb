@@ -28,7 +28,7 @@ class ApplicationTest < Minitest::Test
 
   ########## Irregular Cases ##########
 
-  def test_initialize_with_invalid_unit
+  def test_initialize_with_invalid_username
     e = assert_raises RuntimeError do
       ::TemplateCreator::Application.run(username: 'InvalidUsername', unit: 'm', year: year)
     end
