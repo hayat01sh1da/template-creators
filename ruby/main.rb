@@ -1,6 +1,17 @@
 require_relative './src/application'
 
-username, unit, year, *_ = ARGV
+puts 'Provide your username(Default: hayat01sh1da)'
+_username = gets.chomp
+
+puts 'Provide your preferred unit d(daily - default), w(weekly) or m'
+_unit = gets.chomp
+
+puts 'Provide the specific year you would like to create working report templates for(Default: the current year)'
+_year = gets.chomp
+
+username = _username.empty? ? nil : _username
+unit     = _unit.empty? ? nil : _unit
+year     = _year.empty? ? nil : _year
 
 if username && unit && year
   ::TemplateCreator::Application.run(username:, unit:, year:)
