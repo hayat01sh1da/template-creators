@@ -14,13 +14,13 @@ unit     = _unit.empty? ? nil : _unit
 year     = _year.empty? ? nil : _year
 
 if username && unit && year
-  ::TemplateCreator::Application.run(username:, unit:, year:)
+  Application.run(username:, unit:, year:)
 elsif username
-  ::TemplateCreator::Application.run(username:)
+  Application.run(username:)
 elsif unit
-  ::TemplateCreator::Application.run(unit:)
+  Application.run(unit:)
 elsif year
-  ::TemplateCreator::Application.run(year:)
+  Application.run(year:)
 else
-  ::TemplateCreator::Application.run
+  Application.run
 end
