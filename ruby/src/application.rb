@@ -52,7 +52,7 @@ module TemplateCreator
           create_templates(month) { |d|
             day = sprintf('%02d', d)
             if unit == 'd'
-              next if is_saturday?(i, d) || is_sunday?(i, d)
+              next if is_weekend?(i, d)
               export_template(directory, index, day, month)
             else
               next unless is_monday?(i, d)
@@ -91,6 +91,12 @@ module TemplateCreator
     def is_sunday?(month, day)
       Time.new(year, month, day).sunday?
     end
+
+    def is_weekend?(month, day)
+      date = Time.new(year, month, day)
+      date.saturday? || date.sunday?
+    end
+
 
     def is_leap_year?
       (year.to_i % 400).zero? || (!!(year.to_i % 100).nonzero? && (year.to_i % 4).zero?)

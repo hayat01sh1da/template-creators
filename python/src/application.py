@@ -89,6 +89,10 @@ class Application:
         # 6: Sunday
         return datetime.date(int(self.year), month, day).weekday() == 6
 
+    def __is_weekend__(self, month, day):
+        date = datetime.date(int(self.year), month, day).weekday()
+        return date == 5 or date == 6
+
     def __is_leap_year__(self):
         return int(self.year) % 400 == 0 or (int(self.year) % 100 != 0 and int(self.year) % 4 == 0)
 
@@ -165,7 +169,7 @@ class Application:
     def __create_template__(self, d, directory, index, month):
         day = '{:02}'.format(d)
         if self.unit == 'd':
-            if self.__is_saturday__(int(index), d) or self.__is_sunday__(int(index), d):
+            if self.__is_weekend__(int(index), d):
                 return
             else:
                 self.__export_template__(directory, index, day, month)
