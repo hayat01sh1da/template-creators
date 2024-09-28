@@ -9,8 +9,29 @@ class ApplicationTest < Minitest::Test
     @template_files = File.join(base_dir, year, '**', '*.md')
   end
 
-  ########## Regular Cases ##########
+  def teardown
+    destination_dir = File.join(base_dir, year)
+    FileUtils.rm_rf(destination_dir) if Dir.exist?(destination_dir)
+    FileUtils.rm_rf(base_dir) if no_template?
+  end
 
+  private
+
+  attr_reader :username, :year, :base_dir, :template_files
+
+  def check_template_files(unit)
+    filepath           = File.join('..', 'testing_file_lists', "#{unit}_templates.txt")
+    expected_templates = File.open(filepath).read.split("\n")
+    actual_templates   = Dir[template_files]
+    assert_equal(expected_templates, actual_templates)
+  end
+
+  def no_template?
+    Dir[template_files].empty?
+  end
+end
+
+class RegularCaseTest < ApplicationTest
   def test_run_by_daily_unit
     ::TemplateCreator::Application.run(username:, unit: 'd', year: year)
     check_template_files('daily')
@@ -25,9 +46,9 @@ class ApplicationTest < Minitest::Test
     ::TemplateCreator::Application.run(username:, unit: 'm', year: year)
     check_template_files('monthly')
   end
+end
 
-  ########## Irregular Cases ##########
-
+class IrregularCaseTest < ApplicationTest
   def test_initialize_with_invalid_username
     e = assert_raises RuntimeError do
       ::TemplateCreator::Application.run(username: 'InvalidUsername', unit: 'm', year: year)
@@ -61,26 +82,5 @@ class ApplicationTest < Minitest::Test
       ::TemplateCreator::Application.run(username:, year: '2022')
     end
     assert_equal(e.message, 'Provide newer than or equal to the current year')
-  end
-
-  def teardown
-    destination_dir = File.join(base_dir, year)
-    FileUtils.rm_rf(destination_dir) if Dir.exist?(destination_dir)
-    FileUtils.rm_rf(base_dir) if no_template?
-  end
-
-  private
-
-  attr_reader :username, :year, :base_dir, :template_files
-
-  def check_template_files(unit)
-    filepath           = File.join('..', 'testing_file_lists', "#{unit}_templates.txt")
-    expected_templates = File.open(filepath).read.split("\n")
-    actual_templates   = Dir[template_files]
-    assert_equal(expected_templates, actual_templates)
-  end
-
-  def no_template?
-    Dir[template_files].empty?
   end
 end

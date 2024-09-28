@@ -13,45 +13,6 @@ class TestApplication(unittest.TestCase):
         self.base_dir       = os.path.join('..', 'working_report', self.username)
         self.template_files = os.path.join('..', 'working_report', self.username, self.year, '**', '*.md')
 
-    ########## Regular Cases ##########
-
-    def test_run_by_daily_unit(self):
-        app = Application(username = self.username, unit = 'd', year = self.year)
-        app.run()
-        self.__check_template_files__('daily')
-
-    def test_run_by_weekly_unit(self):
-        app = Application(username = self.username, unit = 'w', year = self.year)
-        app.run()
-        self.__check_template_files__('weekly')
-
-    def test_run_by_monthly_unit(self):
-        app = Application(username = self.username, unit = 'm', year = self.year)
-        app.run()
-        self.__check_template_files__('monthly')
-
-    ########## Irregular Cases ##########
-
-    def test_initialize_with_invalid_username(self):
-        with self.assertRaises(ValueError, msg = 'InvalidUsername is NOT an allowed value'):
-            Application(username = 'InvalidUsername', unit = 'foobar', year = self.year).run()
-
-    def test_initialize_with_invalid_unit(self):
-        with self.assertRaises(ValueError, msg = 'Provide d, w or y as a valid unit'):
-            Application(username = self.username, unit = 'foobar', year = self.year).run()
-
-    def test_initialize_with_non_digit_argument(self):
-        with self.assertRaises(ValueError, msg = 'invalid literal for int() with base 10: "foobar"'):
-            Application(username = self.username, year = 'foobar')
-
-    def test_initialize_with_invalid_value_as_year(self):
-        with self.assertRaises(ValueError, msg = 'Year must be 4 digits'):
-            Application(username = self.username, year = '20233')
-
-    def test_initialize_with_older_year(self):
-        with self.assertRaises(ValueError, msg = 'Provide newer than or equal to the current year'):
-            Application(username = self.username, year = '2022')
-
     def tearDown(self):
         destination_dir = os.path.join(self.base_dir, self.year)
         if os.path.isdir(destination_dir):
@@ -71,6 +32,43 @@ class TestApplication(unittest.TestCase):
 
     def __has_no_template__(self):
         len(glob.glob(os.path.join(self.template_files))) == 0
+
+class TestRegularCase(TestApplication):
+    def test_run_by_daily_unit(self):
+        app = Application(username = self.username, unit = 'd', year = self.year)
+        app.run()
+        self.__check_template_files__('daily')
+
+    def test_run_by_weekly_unit(self):
+        app = Application(username = self.username, unit = 'w', year = self.year)
+        app.run()
+        self.__check_template_files__('weekly')
+
+    def test_run_by_monthly_unit(self):
+        app = Application(username = self.username, unit = 'm', year = self.year)
+        app.run()
+        self.__check_template_files__('monthly')
+
+class TestIrregularCase(TestApplication):
+    def test_initialize_with_invalid_username(self):
+        with self.assertRaises(ValueError, msg = 'InvalidUsername is NOT an allowed value'):
+            Application(username = 'InvalidUsername', unit = 'foobar', year = self.year).run()
+
+    def test_initialize_with_invalid_unit(self):
+        with self.assertRaises(ValueError, msg = 'Provide d, w or y as a valid unit'):
+            Application(username = self.username, unit = 'foobar', year = self.year).run()
+
+    def test_initialize_with_non_digit_argument(self):
+        with self.assertRaises(ValueError, msg = 'invalid literal for int() with base 10: "foobar"'):
+            Application(username = self.username, year = 'foobar')
+
+    def test_initialize_with_invalid_value_as_year(self):
+        with self.assertRaises(ValueError, msg = 'Year must be 4 digits'):
+            Application(username = self.username, year = '20233')
+
+    def test_initialize_with_older_year(self):
+        with self.assertRaises(ValueError, msg = 'Provide newer than or equal to the current year'):
+            Application(username = self.username, year = '2022')
 
 if __name__ == '__main__':
     unittest.main()
