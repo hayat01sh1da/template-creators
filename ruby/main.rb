@@ -3,7 +3,7 @@ require_relative './src/application'
 puts 'Provide your username(Default: hayat01sh1da)'
 _username = gets.chomp
 
-puts 'Provide your preferred unit d(daily - default), w(weekly) or m'
+puts 'Provide your preferred unit d(daily - default), w(weekly) or m(monthly)'
 _unit = gets.chomp
 
 puts 'Provide the specific year you would like to create working report templates for(Default: the current year)'
