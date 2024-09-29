@@ -2,6 +2,9 @@ require 'date'
 require 'fileutils'
 
 class Application
+  class ValueError < StandardError; end
+  class DigitLengthError < StandardError; end
+
   USERNAMES = ['hayat01sh1da'].freeze
 
   def self.run(username: 'hayat01sh1da', unit: 'd', year: Time.now.year.to_s)
@@ -19,7 +22,7 @@ class Application
   end
 
   def validate_username!(username)
-    raise "#{username} is NOT an allowed value" unless USERNAMES.include?(username)
+    raise ValueError, "#{username} is NOT an allowed value" unless USERNAMES.include?(username)
   end
 
   def validate_unit!(unit)
@@ -27,16 +30,16 @@ class Application
     when 'd', 'w', 'm'
       unit
     else
-      raise 'Provide d, w or y as a valid unit'
+      raise ValueError, 'Provide d, w or y as a valid unit'
     end
   end
 
   def validate_year!(year)
     Integer(year)
     if year.length > 4
-      raise 'Year must be 4 digits'
+      raise DigitLengthError, 'Year must be 4 digits'
     elsif year.to_i < Time.now.year
-      raise 'Provide newer than or equal to the current year'
+      raise ValueError, 'Provide newer than or equal to the current year'
     else
       year
     end
