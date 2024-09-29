@@ -28,6 +28,8 @@ class TestApplication(unittest.TestCase):
             expected_templates = f.read().split('\n')
         expected_templates.pop()
         actual_templates = glob.glob(os.path.join(self.template_files))
+        if not str(type(actual_templates)) == "<class 'NoneType'>":
+            actual_templates.sort()
         self.assertListEqual(expected_templates, actual_templates)
 
     def __has_no_template__(self):
