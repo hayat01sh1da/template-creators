@@ -140,8 +140,6 @@ class Application:
         text += "  - TBA\n"
         text += "  - TBA\n\n"
         text += "### 2-2 [PBI/SBI](URL)\n\n"
-        text += "- 作業進捗: 〇/100%({STATUS})\n"
-        text += "- 完了時期目安: TBA\n"
         text += "- 目標作業進捗: 〇/100%({STATUS})\n"
         text += "- 予定作業\n"
         text += "  - TBA\n"
