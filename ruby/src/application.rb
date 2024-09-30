@@ -99,7 +99,6 @@ class Application
     date.saturday? || date.sunday?
   end
 
-
   def is_leap_year?
     (year.to_i % 400).zero? || (!!(year.to_i % 100).nonzero? && (year.to_i % 4).zero?)
   end
