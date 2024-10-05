@@ -11,7 +11,7 @@ class Application:
             case 'd' | 'w' | 'm':
                 self.unit = unit
             case _:
-                raise ValueError('Provide d, w or y as a valid unit')
+                raise ValueError('Provide d, w or m as a valid unit')
         int(year)
         if len(year) > 4:
             raise ValueError('Year must be 4 digits')
@@ -46,7 +46,7 @@ class Application:
                 case 'm':
                     self.__export_template__(directory = directory, index = index, month = month)
                 case _:
-                    raise ValueError('Provide d, w or y as a valid unit')
+                    raise ValueError('Provide d, w or m as a valid unit')
 
     # private
 

@@ -57,7 +57,7 @@ class TestIrregularCase(TestApplication):
             Application(username = 'InvalidUsername', unit = 'foobar', year = self.year).run()
 
     def test_initialize_with_invalid_unit(self):
-        with self.assertRaises(ValueError, msg = 'Provide d, w or y as a valid unit'):
+        with self.assertRaises(ValueError, msg = 'Provide d, w or m as a valid unit'):
             Application(username = self.username, unit = 'foobar', year = self.year).run()
 
     def test_initialize_with_non_digit_argument(self):

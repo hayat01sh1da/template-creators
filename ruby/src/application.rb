@@ -30,7 +30,7 @@ class Application
     when 'd', 'w', 'm'
       unit
     else
-      raise ValueError, 'Provide d, w or y as a valid unit'
+      raise ValueError, 'Provide d, w or m as a valid unit'
     end
   end
 

@@ -60,7 +60,7 @@ class IrregularCaseTest < ApplicationTest
     e = assert_raises Application::ValueError do
       Application.run(username:, unit: 'foobar', year: year)
     end
-    assert_equal(e.message, 'Provide d, w or y as a valid unit')
+    assert_equal(e.message, 'Provide d, w or m as a valid unit')
   end
 
   def test_initialize_with_non_digit_argument
