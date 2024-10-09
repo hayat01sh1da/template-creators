@@ -20,25 +20,5 @@ In you terminal, provide the following 3 parameters via interactive user inputs.
   - Creates templates only for weekday
   - Skips creating templates for leap days of every 4 years
 
-### 3-1. For Ruby Lovers
-
-```command
-$ cd ./ruby/
-$ ruby main.rb 
-Provide your username(Default: hayat01sh1da)
-hayat01sh1da
-Provide your preferred unit d(daily - default), w(weekly) or m
-d
-Provide the specific year you would like to create working report templates for(Default: the current year)
-2024
-```
-
-### 3-2. For Python Lovers
-
-```command
-$ cd ./python/
-$ python main.py 
-Provide your username(Default: hayat01sh1da): hayat01sh1da
-Provide your preferred unit d(daily - default), w(weekly) or m: d
-Provide the specific year you would like to create working report templates for(Default: the current year): 2024
-```
+- [For Ruby Users](./ruby/README.md#2-execution)
+- [For Python Users](./python/README.md#2-execution)
