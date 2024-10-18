@@ -12,6 +12,7 @@ class TestApplication(unittest.TestCase):
         self.year           = '2100'
         self.base_dir       = os.path.join('..', '..', 'working-report', self.username)
         self.template_files = os.path.join('..', '..', 'working-report', self.username, self.year, '**', '*.md')
+        self.pycaches       = glob.glob(os.path.join('.', '**', '__pycache__'))
 
     def tearDown(self):
         destination_dir = os.path.join(self.base_dir, self.year)
@@ -19,6 +20,9 @@ class TestApplication(unittest.TestCase):
             shutil.rmtree(destination_dir)
         if self.__has_no_template__():
             shutil.rmtree(self.base_dir)
+        for pycache in self.pycaches:
+            if os.path.isdir(pycache):
+                shutil.rmtree(pycache)
 
     # private
 
