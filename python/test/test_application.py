@@ -12,7 +12,7 @@ class TestApplication(unittest.TestCase):
         self.year           = '2100'
         self.base_dir       = os.path.join('..', '..', 'working-report', self.username)
         self.template_files = os.path.join('..', '..', 'working-report', self.username, self.year, '**', '*.md')
-        self.pycaches       = glob.glob(os.path.join('.', '**', '__pycache__'))
+        self.pycaches       = glob.glob(os.path.join('.', '**', '__pycache__'), recursive = True)
 
     def tearDown(self):
         destination_dir = os.path.join(self.base_dir, self.year)
@@ -31,13 +31,13 @@ class TestApplication(unittest.TestCase):
         with open(filepath) as f:
             expected_templates = f.read().split('\n')
         expected_templates.pop()
-        actual_templates = glob.glob(os.path.join(self.template_files))
+        actual_templates = glob.glob(os.path.join(self.template_files), recursive = True)
         if not str(type(actual_templates)) == "<class 'NoneType'>":
             actual_templates.sort()
         self.assertListEqual(expected_templates, actual_templates)
 
     def __has_no_template__(self):
-        len(glob.glob(os.path.join(self.template_files))) == 0
+        len(glob.glob(os.path.join(self.template_files)), recursive = True) == 0
 
 class TestRegularCase(TestApplication):
     def test_run_by_daily_unit(self):
