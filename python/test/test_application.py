@@ -16,12 +16,12 @@ class TestApplication(unittest.TestCase):
 
     def tearDown(self):
         destination_dir = os.path.join(self.base_dir, self.year)
-        if os.path.isdir(destination_dir):
+        if os.path.exists(destination_dir):
             shutil.rmtree(destination_dir)
         if self.__has_no_template__():
             shutil.rmtree(self.base_dir)
         for pycache in self.pycaches:
-            if os.path.isdir(pycache):
+            if os.path.exists(pycache):
                 shutil.rmtree(pycache)
 
     # private

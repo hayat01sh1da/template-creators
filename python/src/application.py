@@ -159,7 +159,7 @@ class Application:
             date += '{day} '.format(day = day)
         date += '{month} {year}'.format(month = month, year = self.year)
         filename = os.path.join(directory, '{year}{index}{day}_{full_unit}_working_report.md'.format(year = self.year, index = index, day = day, full_unit = self.__full_unit__()))
-        if not os.path.isdir(directory):
+        if not os.path.exists(directory):
             os.makedirs(directory)
         with open(filename, 'w') as f:
             f.write(self.__body__(date))
