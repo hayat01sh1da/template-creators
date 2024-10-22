@@ -37,7 +37,7 @@ class TestApplication(unittest.TestCase):
         self.assertListEqual(expected_templates, actual_templates)
 
     def __has_no_template__(self):
-        len(glob.glob(os.path.join(self.template_files)), recursive = True) == 0
+        len(glob.glob(os.path.join(self.template_files), recursive = True)) == 0
 
 class TestRegularCase(TestApplication):
     def test_run_by_daily_unit(self):
