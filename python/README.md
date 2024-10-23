@@ -5,7 +5,7 @@
 ## 2. Execution
 
 ```command
-$ cd ./python/
+$ cd ./python
 $ python main.py 
 Provide your username(Default: hayat01sh1da): hayat01sh1da
 Provide your preferred unit d(daily - default), w(weekly) or m: d

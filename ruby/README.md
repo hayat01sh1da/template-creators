@@ -5,7 +5,7 @@
 ## 2. Execution
 
 ```command
-$ cd ./ruby/
+$ cd ./ruby
 $ ruby main.rb 
 Provide your username(Default: hayat01sh1da)
 hayat01sh1da
