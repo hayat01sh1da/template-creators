@@ -22,7 +22,7 @@ class Application
   end
 
   def validate_username!(username)
-    raise ValueError, "#{username} is NOT an allowed value" unless USERNAMES.include?(username)
+    raise ValueError, "#{username} is NOT a permitted username." unless USERNAMES.include?(username)
   end
 
   def validate_unit!(unit)

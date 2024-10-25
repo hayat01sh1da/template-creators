@@ -53,7 +53,7 @@ class IrregularCaseTest < ApplicationTest
     e = assert_raises Application::ValueError do
       Application.run(username: 'InvalidUsername', unit: 'm', year: year)
     end
-    assert_equal(e.message, 'InvalidUsername is NOT an allowed value')
+    assert_equal(e.message, 'InvalidUsername is NOT a permitted username.')
   end
 
   def test_initialize_with_invalid_unit

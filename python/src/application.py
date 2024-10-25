@@ -6,7 +6,7 @@ class Application:
     def __init__(self, username = 'hayat01sh1da', unit = 'd', year = datetime.date.today().strftime('%Y')):
         USERNAMES = ('hayat01sh1da')
         if not username in USERNAMES:
-            raise ValueError('{username} is NOT an allowed value'.format(username = username))
+            raise ValueError('{username} is NOT a permitted username.'.format(username = username))
         match unit:
             case 'd' | 'w' | 'm':
                 self.unit = unit
@@ -46,7 +46,7 @@ class Application:
                 case 'm':
                     self.__export_template__(directory = directory, index = index, month = month)
                 case _:
-                    raise ValueError('Provide d, w or m as a valid unit')
+                    raise ValueError('Provide d, w or m as a valid unit.')
 
     # private
 

@@ -57,7 +57,7 @@ class TestRegularCase(TestApplication):
 
 class TestIrregularCase(TestApplication):
     def test_initialize_with_invalid_username(self):
-        with self.assertRaises(ValueError, msg = 'InvalidUsername is NOT an allowed value'):
+        with self.assertRaises(ValueError, msg = 'InvalidUsername is NOT a permitted username.'):
             Application(username = 'InvalidUsername', unit = 'foobar', year = self.year).run()
 
     def test_initialize_with_invalid_unit(self):
