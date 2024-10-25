@@ -61,7 +61,7 @@ class TestIrregularCase(TestApplication):
             Application(username = 'InvalidUsername', unit = 'foobar', year = self.year).run()
 
     def test_initialize_with_invalid_unit(self):
-        with self.assertRaises(ValueError, msg = 'Provide d, w or m as a valid unit'):
+        with self.assertRaises(ValueError, msg = 'Provide d, w or m as a valid unit.'):
             Application(username = self.username, unit = 'foobar', year = self.year).run()
 
     def test_initialize_with_non_digit_argument(self):
@@ -69,11 +69,11 @@ class TestIrregularCase(TestApplication):
             Application(username = self.username, year = 'foobar')
 
     def test_initialize_with_invalid_value_as_year(self):
-        with self.assertRaises(ValueError, msg = 'Year must be 4 digits'):
+        with self.assertRaises(ValueError, msg = 'Year must be 4 digits.'):
             Application(username = self.username, year = '20233')
 
     def test_initialize_with_older_year(self):
-        with self.assertRaises(ValueError, msg = 'Provide newer than or equal to the current year'):
+        with self.assertRaises(ValueError, msg = 'Provide newer than or equal to the current year.'):
             Application(username = self.username, year = '2022')
 
 if __name__ == '__main__':

@@ -11,12 +11,12 @@ class Application:
             case 'd' | 'w' | 'm':
                 self.unit = unit
             case _:
-                raise ValueError('Provide d, w or m as a valid unit')
+                raise ValueError('Provide d, w or m as a valid unit.')
         int(year)
         if len(year) > 4:
-            raise ValueError('Year must be 4 digits')
+            raise ValueError('Year must be 4 digits.')
         if int(year) < int(datetime.date.today().strftime('%Y')):
-            raise ValueError('Provide newer than or equal to the current year')
+            raise ValueError('Provide newer than or equal to the current year.')
         self.username = username
         self.year     = year
         self.months   = list()

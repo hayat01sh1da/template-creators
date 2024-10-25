@@ -30,16 +30,16 @@ class Application
     when 'd', 'w', 'm'
       unit
     else
-      raise ValueError, 'Provide d, w or m as a valid unit'
+      raise ValueError, 'Provide d, w or m as a valid unit.'
     end
   end
 
   def validate_year!(year)
     Integer(year)
     if year.length > 4
-      raise DigitLengthError, 'Year must be 4 digits'
+      raise DigitLengthError, 'Year must be 4 digits.'
     elsif year.to_i < Time.now.year
-      raise ValueError, 'Provide newer than or equal to the current year'
+      raise ValueError, 'Provide newer than or equal to the current year.'
     else
       year
     end
