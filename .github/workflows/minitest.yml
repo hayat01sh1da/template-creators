@@ -28,6 +28,5 @@ jobs:
         with:
           ruby-version: '3.3.5'
       - name: Run MiniTest
-        run: |
-          cd ./ruby
-          ruby test/application_test.rb
+        working-directory: ./ruby
+        run: ruby test/application_test.rb
