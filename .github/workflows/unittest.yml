@@ -5,9 +5,13 @@ name: UnitTest
 
 on:
   push:
-    branches: ["master"]
+    branches: [master]
+    paths:
+      - ./python
   pull_request:
-    branches: ["master"]
+    branches: [master]
+    paths:
+      - ./python
 
 permissions:
   contents: read
