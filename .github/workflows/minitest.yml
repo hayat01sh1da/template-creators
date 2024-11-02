@@ -16,6 +16,7 @@ on:
       - master
     paths:
       - ./ruby
+      - '!./ruby/README.md'
 
 permissions:
   contents: read

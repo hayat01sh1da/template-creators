@@ -12,6 +12,7 @@ on:
       - master
     paths:
       - ./python
+      - '!./python/README.md'
 
 permissions:
   contents: read
