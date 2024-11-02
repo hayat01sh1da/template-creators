@@ -5,11 +5,11 @@ name: UnitTest
 
 on:
   push:
-    branches: [master]
-    paths:
-      - ./python
+    branches:
+      - master
   pull_request:
-    branches: [master]
+    branches:
+      - master
     paths:
       - ./python
 
