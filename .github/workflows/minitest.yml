@@ -11,6 +11,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - ./ruby
+      - '!./ruby/README.md'
   pull_request:
     branches:
       - master
