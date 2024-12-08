@@ -1,6 +1,6 @@
 ## 1. Environment
 
-- Python 3.13.0
+- Python 3.13.1
 
 ## 2. Execution
 
