@@ -104,7 +104,8 @@ class Application
   end
 
   def body(date)
-    text =  "# TITLE on #{date}\n\n"
+    text  = []
+    text << "# TITLE on #{date}\n\n"
     text << "## 1. CATEGORY\n\n"
     text << "### 1-1. SUBCATEGORY\n\n"
     text << "- ITEM\n"
@@ -131,15 +132,16 @@ class Application
     text << "- ITEM\n"
     text << "- ITEM\n"
     text << "- ITEM\n"
+    text.join
   end
 
   def export_template(directory, index, day = '', month)
-    date     =  ''
+    date     =  []
     date     << "#{day} " unless day.empty?
     date     << "#{month} #{year}"
     filename = File.join(directory, "#{year}#{index}#{day}_#{full_unit}_working_report.md")
     FileUtils.mkdir_p(directory) unless Dir.exist?(directory)
-    IO.write(filename, body(date)) unless File.exist?(filename)
+    IO.write(filename, body(date.join)) unless File.exist?(filename)
   end
 
   def create_templates(month)
