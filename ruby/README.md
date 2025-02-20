@@ -1,6 +1,6 @@
 ## 1. Environment
 
-- Ruby 3.4.1
+- Ruby 3.4.2
 
 ## 2. Execution
 
