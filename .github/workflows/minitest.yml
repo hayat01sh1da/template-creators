@@ -9,15 +9,11 @@ name: MiniTest
 
 on:
   push:
-    branches:
-      - master
     paths:
       - '.github/workflows/minitest.yml'
       - 'testing_file_lists/*txt'
       - '**.rb'
   pull_request:
-    branches:
-      - master
     paths:
       - '.github/workflows/minitest.yml'
       - 'testing_file_lists/*txt'
