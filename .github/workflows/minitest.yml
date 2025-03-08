@@ -12,12 +12,12 @@ on:
     paths:
       - '.github/workflows/minitest.yml'
       - 'testing_file_lists/*txt'
-      - '**.rb'
+      - 'ruby/**/*.rb'
   pull_request:
     paths:
       - '.github/workflows/minitest.yml'
       - 'testing_file_lists/*txt'
-      - '**.rb'
+      - 'ruby/**/*.rb'
 
 permissions:
   contents: read
