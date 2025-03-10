@@ -9,6 +9,8 @@ name: Minitest
 
 on:
   push:
+    branches:
+      - master
     paths:
       - '.github/workflows/minitest.yml'
       - 'testing_file_lists/*txt'
