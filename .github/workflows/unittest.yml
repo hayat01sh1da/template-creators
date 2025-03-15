@@ -9,11 +9,13 @@ on:
       - master
     paths:
       - '.github/workflows/unittest.yml'
+      - './python-version'
       - 'testing_file_lists/*txt'
       - 'python/**/*.rb'
   pull_request:
     paths:
       - '.github/workflows/unittest.yml'
+      - './python-version'
       - 'testing_file_lists/*txt'
       - 'python/**/*.rb'
 
