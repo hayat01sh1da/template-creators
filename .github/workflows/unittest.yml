@@ -11,13 +11,13 @@ on:
       - '.github/workflows/unittest.yml'
       - './python-version'
       - 'testing_file_lists/*txt'
-      - 'python/**/*.rb'
+      - 'python/**/*.py'
   pull_request:
     paths:
       - '.github/workflows/unittest.yml'
       - './python-version'
       - 'testing_file_lists/*txt'
-      - 'python/**/*.rb'
+      - 'python/**/*.py'
 
 permissions:
   contents: read
