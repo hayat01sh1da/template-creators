@@ -27,7 +27,7 @@ class TestApplication(unittest.TestCase):
     # private
 
     def __check_template_files__(self, unit):
-        filepath = os.path.join('..', 'testing_file_lists', '{unit}_templates.txt'.format(unit = unit))
+        filepath = os.path.join('..', 'testing_file_lists', f'{unit}_templates.txt')
         with open(filepath) as f:
             expected_templates = f.read().split('\n')
         expected_templates.pop()

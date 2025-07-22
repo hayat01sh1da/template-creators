@@ -6,7 +6,7 @@ class Application:
     def __init__(self, username = 'hayat01sh1da', unit = 'd', year = datetime.date.today().strftime('%Y')):
         USERNAMES = ('hayat01sh1da')
         if not username in USERNAMES:
-            raise ValueError('{username} is NOT a permitted username.'.format(username = username))
+            raise ValueError(f'{username} is NOT a permitted username.')
         match unit:
             case 'd' | 'w' | 'm':
                 self.unit = unit
@@ -25,8 +25,8 @@ class Application:
 
     def run(self):
         for i, month in enumerate(self.months):
-            index     = '{:02}'.format(i + 1)
-            directory = os.path.join('..', '..', 'working-report', self.username, '{year}'.format(year = self.year), '{index}_{month}'.format(index = index, month = month))
+            index     = f'{i + 1:02}'
+            directory = os.path.join('..', '..', 'working-report', self.username, f'{self.year}', f'{index}_{month}')
             match self.unit:
                 case 'd' | 'w':
                     for d in range(1, 32):
@@ -129,16 +129,16 @@ class Application:
     def __export_template__(self, directory, index, day = '', month = ''):
         date = ''
         if not len(day) == 0:
-            date += '{day} '.format(day = day)
-        date += '{month} {year}'.format(month = month, year = self.year)
-        filename = os.path.join(directory, '{year}{index}{day}_{full_unit}_working_report.md'.format(year = self.year, index = index, day = day, full_unit = self.__full_unit__()))
+            date += f'{day} '
+        date += f'{month} {self.year}'
+        filename = os.path.join(directory, f'{self.year}{index}{day}_{self.__full_unit__()}_working_report.md')
         if not os.path.exists(directory):
             os.makedirs(directory)
         with open(filename, 'w') as f:
             f.write(self.__body__(date))
 
     def __create_template__(self, d, directory, index, month):
-        day = '{:02}'.format(d)
+        day = f'{d:02}'
         if self.unit == 'd':
             if self.__is_weekend__(int(index), d):
                 return
