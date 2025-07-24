@@ -53,34 +53,34 @@ class IrregularCaseTest < ApplicationTest
     error = assert_raises Application::ValueError do
       Application.run(username: 'InvalidUsername', unit: 'm', year: year)
     end
-    assert_equal(error.message, 'InvalidUsername is NOT a permitted username.')
+    assert_equal('InvalidUsername is NOT a permitted username.', error.message)
   end
 
   def test_initialize_with_invalid_unit
     error = assert_raises Application::ValueError do
       Application.run(username:, unit: 'foobar', year: year)
     end
-    assert_equal(error.message, 'Provide d, w or m as a valid unit.')
+    assert_equal('Provide d, w or m as a valid unit.', error.message)
   end
 
   def test_initialize_with_non_digit_argument
     error = assert_raises ArgumentError do
       Application.run(username:, year: 'foobar')
     end
-    assert_equal(error.message, 'invalid value for Integer(): "foobar"')
+    assert_equal('invalid value for Integer(): "foobar"', error.message)
   end
 
   def test_initialize_with_invalid_value_as_year
     error = assert_raises Application::DigitLengthError do
       Application.run(username:, year: '20233')
     end
-    assert_equal(error.message, 'Year must be 4 digits.')
+    assert_equal('Year must be 4 digits.', error.message)
   end
 
   def test_initialize_with_older_year
     error = assert_raises Application::ValueError do
       Application.run(username:, year: '2022')
     end
-    assert_equal(error.message, 'Provide newer than or equal to the current year.')
+    assert_equal('Provide newer than or equal to the current year.', error.message)
   end
 end

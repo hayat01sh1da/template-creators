@@ -34,7 +34,7 @@ class TestApplication(unittest.TestCase):
         actual_templates = glob.glob(os.path.join(self.template_files), recursive = True)
         if not str(type(actual_templates)) == "<class 'NoneType'>":
             actual_templates.sort()
-        self.assertListEqual(expected_templates, actual_templates)
+        self.assertListEqual(actual_templates, expected_templates)
 
     def __has_no_template__(self):
         len(glob.glob(os.path.join(self.template_files), recursive = True)) == 0
