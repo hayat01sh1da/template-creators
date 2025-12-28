@@ -7,7 +7,12 @@
 - [Ruby](./ruby/README.md)
 - [Python](./python/README.md)
 
-## 3. How to Use
+## 3. Source Codes
+
+- [Ruby](./ruby/)
+- [Python](./python/)
+
+## 4. How to Use
 
 In you terminal, provide the following 3 parameters via interactive user inputs.
 
