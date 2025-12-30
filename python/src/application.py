@@ -132,8 +132,7 @@ class Application:
             date += f'{day} '
         date += f'{month} {self.year}'
         filename = os.path.join(directory, f'{self.year}{index}{day}_{self.__full_unit__()}_working_report.md')
-        if not os.path.exists(directory):
-            os.makedirs(directory)
+        os.makedirs(directory, exist_ok = True)
         with open(filename, 'w') as f:
             f.write(self.__body__(date))
 

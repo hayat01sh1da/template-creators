@@ -8,24 +8,24 @@ class Application
   USERNAMES = ['hayat01sh1da'].freeze
 
   def self.run(username: 'hayat01sh1da', unit: 'd', year: Time.now.year.to_s)
-    instance = new(username, unit, year)
-    instance.validate_username!(username)
-    instance.validate_unit!(unit)
-    instance.validate_year!(year)
+    instance = new(username:, unit:, year:)
+    instance.validate_username!
+    instance.validate_unit!
+    instance.validate_year!
     instance.run
   end
 
-  def initialize(username, unit, year)
+  def initialize(username: 'hayat01sh1da', unit: 'd', year: Time.now.year.to_s)
     @username = username
     @unit     = unit
     @year     = year
   end
 
-  def validate_username!(username)
+  def validate_username!
     raise ValueError, "#{username} is NOT a permitted username." unless USERNAMES.include?(username)
   end
 
-  def validate_unit!(unit)
+  def validate_unit!
     case unit
     when 'd', 'w', 'm'
       unit
@@ -34,7 +34,7 @@ class Application
     end
   end
 
-  def validate_year!(year)
+  def validate_year!
     Integer(year)
     if year.length > 4
       raise DigitLengthError, 'Year must be 4 digits.'
