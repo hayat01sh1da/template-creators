@@ -5,9 +5,9 @@ import glob
 sys.path.append('./src')
 from application import Application
 
-username = input('Provide your username(Default: hayat01sh1da): ')
-unit     = input('Provide your preferred unit d(daily - default), w(weekly) or m(monthly): ')
-year     = input('Provide the specific year you would like to create working report templates for(Default: the current year): ')
+username = input('Provide your username(Default: hayat01sh1da): ').strip()
+unit     = input('Provide your preferred unit d(daily - default), w(weekly) or m(monthly): ').strip()
+year     = input('Provide the specific year you would like to create working report templates for(Default: the current year): ').strip()
 
 if username and unit and year:
     app = Application(username = username, unit = unit, year = year)
