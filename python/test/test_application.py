@@ -69,7 +69,7 @@ class TestIrregularCase(TestApplication):
     def test_initialize_with_non_digit_argument(self):
         with self.assertRaises(ValueError) as cm:
             Application(username = self.username, year = 'foobar')
-        self.assertEqual('invalid literal for int() with base 10: "foobar"', str(cm.exception))
+        self.assertEqual('invalid literal for int() with base 10: \'foobar\'', str(cm.exception))
 
     def test_initialize_with_invalid_value_as_year(self):
         with self.assertRaises(ValueError) as cm:
