@@ -57,24 +57,29 @@ class TestRegularCase(TestApplication):
 
 class TestIrregularCase(TestApplication):
     def test_initialize_with_invalid_username(self):
-        with self.assertRaises(ValueError, msg = 'InvalidUsername is NOT a permitted username.'):
+        with self.assertRaises(ValueError) as cm:
             Application(username = 'InvalidUsername', unit = 'foobar', year = self.year).run()
+        self.assertEqual('InvalidUsername is NOT a permitted username.', str(cm.exception))
 
     def test_initialize_with_invalid_unit(self):
-        with self.assertRaises(ValueError, msg = 'Provide d, w or m as a valid unit.'):
+        with self.assertRaises(ValueError) as cm:
             Application(username = self.username, unit = 'foobar', year = self.year).run()
+        self.assertEqual('Provide d, w or m as a valid unit.', str(cm.exception))
 
     def test_initialize_with_non_digit_argument(self):
-        with self.assertRaises(ValueError, msg = 'invalid literal for int() with base 10: "foobar"'):
+        with self.assertRaises(ValueError) as cm:
             Application(username = self.username, year = 'foobar')
+        self.assertEqual('invalid literal for int() with base 10: "foobar"', str(cm.exception))
 
     def test_initialize_with_invalid_value_as_year(self):
-        with self.assertRaises(ValueError, msg = 'Year must be 4 digits.'):
+        with self.assertRaises(ValueError) as cm:
             Application(username = self.username, year = '20233')
+        self.assertEqual('Year must be 4 digits.', str(cm.exception))
 
     def test_initialize_with_older_year(self):
-        with self.assertRaises(ValueError, msg = 'Provide newer than or equal to the current year.'):
+        with self.assertRaises(ValueError) as cm:
             Application(username = self.username, year = '2022')
+        self.assertEqual('Provide newer than or equal to the current year.', str(cm.exception))
 
 if __name__ == '__main__':
     unittest.main()
