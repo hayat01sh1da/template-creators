@@ -3,8 +3,7 @@
 ## Supported Versions
 
 - Templates generated from the latest `master` commit are supported.
-- Older yearly/monthly templates are static snapshots and are not updated once
-	published.
+- Older yearly/monthly templates are static snapshots and are not updated once published.
 
 ## Ecosystem & Compatibility
 
@@ -16,15 +15,10 @@
 
 ## Backward Compatibility
 
-- Generated template formats stay consistent within a calendar year. If we
-	alter a file structure or naming convention, the change log will highlight
-	required migrations.
-- Scripts rely on Ruby 4.0.x / Python 3.14.x; earlier interpreter versions are
-	unsupported and will not get fixes.
+- Generated template formats stay consistent within a calendar year. If we alter a file structure or naming convention, the change log will highlight required migrations.
+- Scripts rely on Ruby 4.0.x / Python 3.14.x; earlier interpreter versions are unsupported and will not get fixes.
 
 ## Reporting a Vulnerability
 
-Report issues privately through GitHub’s **Security → Report a vulnerability**
-workflow or by emailing `security@project.org` with reproduction steps (e.g.,
-input prompts, generated filenames). Expect acknowledgement within **3 business
-days** and updates at least every **7 business days**.
+Report issues privately through GitHub’s **Security → Report a vulnerability** workflow or by emailing `security@project.org` with reproduction steps (e.g.,
+input prompts, generated filenames). Expect acknowledgement within **3 business days** and updates at least every **7 business days**.
