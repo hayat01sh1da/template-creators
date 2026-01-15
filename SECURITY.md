@@ -20,5 +20,4 @@
 
 ## Reporting a Vulnerability
 
-Report issues privately through GitHub’s **Security → Report a vulnerability** workflow or by emailing `security@project.org` with reproduction steps (e.g.,
-input prompts, generated filenames). Expect acknowledgement within **3 business days** and updates at least every **7 business days**.
+Report issues privately through GitHub’s **Security → Report a vulnerability** workflow, including reproduction steps (e.g., input prompts, generated filenames). Expect acknowledgement within **3 business days** and updates at least every **7 business days**.
