@@ -11,7 +11,7 @@
 | -------------------- | ------------------------------ | ----- |
 | OS baseline          | WSL (Ubuntu 24.04.3 LTS)       | Matches the README instructions. |
 | Ruby generators      | Ruby 4.0.1 (`.ruby-version`)   | Uses Ruby stdlib; add gems per script if needed. |
-| Python generators    | CPython 3.14.2 (`.python-version`) | Uses Python stdlib; add `requirements.txt` if introducing third-party libs. |
+| Python generators    | CPython 3.14.3 (`.python-version`) | Uses Python stdlib; add `requirements.txt` if introducing third-party libs. |
 
 ## Backward Compatibility
 
