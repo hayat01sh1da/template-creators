@@ -1,5 +1,3 @@
-# Security Policy
-
 ## Supported Versions
 
 - Templates generated from the latest `master` commit are supported.
@@ -20,4 +18,7 @@
 
 ## Reporting a Vulnerability
 
-Report issues privately through GitHub’s **Security → Report a vulnerability** workflow, including reproduction steps (e.g., input prompts, generated filenames). Expect acknowledgement within **3 business days** and updates at least every **7 business days**.
+Please report issues privately via **GitHub Security Advisory** (preferred) — open through the repository’s **Security → Report a vulnerability** workflow.
+
+Acknowledgement occurs and status updates follow as soon as possible.  
+After remediation we publish guidance alongside required dependency updates.
