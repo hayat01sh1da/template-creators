@@ -4,7 +4,7 @@
 
 ## 1. Common Environment
 
-- WSL(Ubuntu 24.04.3 LTS)
+- WSL (Ubuntu 25.10)
 
 ## 2. READMEs
 
