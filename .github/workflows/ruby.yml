@@ -5,20 +5,20 @@
 # This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
 # For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
 
-name: Minitest
+name: Ruby
 
 on:
   push:
     branches:
       - master
     paths:
-      - '.github/workflows/minitest.yml'
+      - '.github/workflows/ruby.yml'
       - '.ruby-version'
       - 'testing_file_lists/*txt'
       - 'ruby/**/*.rb'
   pull_request:
     paths:
-      - '.github/workflows/minitest.yml'
+      - '.github/workflows/ruby.yml'
       - '.ruby-version'
       - 'testing_file_lists/*txt'
       - 'ruby/**/*.rb'
