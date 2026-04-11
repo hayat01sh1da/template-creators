@@ -1,0 +1,84 @@
+# Generated from src/application.rb with RBS::Inline
+
+class Application
+  class ValueError < StandardError
+  end
+
+  class DigitLengthError < StandardError
+  end
+
+  USERNAMES: untyped
+
+  # @rbs username: String
+  # @rbs unit: String
+  # @rbs year: String
+  # @rbs return: void
+  def self.run: (?username: String, ?unit: String, ?year: String) -> void
+
+  # @rbs username: String
+  # @rbs unit: String
+  # @rbs year: String
+  # @rbs return: void
+  def initialize: (?username: String, ?unit: String, ?year: String) -> void
+
+  # @rbs return: void
+  def validate_username!: () -> void
+
+  # @rbs return: String
+  def validate_unit!: () -> String
+
+  # @rbs return: String
+  def validate_year!: () -> String
+
+  # @rbs return: void
+  def run: () -> void
+
+  private
+
+  attr_reader username: untyped
+
+  attr_reader unit: untyped
+
+  attr_reader year: untyped
+
+  # @rbs return: String
+  def full_unit: () -> String
+
+  # @rbs month: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
+  def is_monday?: (Integer month, Integer day) -> bool
+
+  # @rbs month: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
+  def is_saturday?: (Integer month, Integer day) -> bool
+
+  # @rbs month: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
+  def is_sunday?: (Integer month, Integer day) -> bool
+
+  # @rbs month: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
+  def is_weekend?: (Integer month, Integer day) -> bool
+
+  # @rbs return: bool
+  def is_leap_year?: () -> bool
+
+  # @rbs date: String
+  # @rbs return: String
+  def body: (String date) -> String
+
+  # @rbs directory: String
+  # @rbs index: String
+  # @rbs day: String
+  # @rbs month: String
+  # @rbs return: void
+  def export_template: (String directory, String index, ?String day) -> void
+
+  # @rbs month: String
+  # @rbs return: void
+  def create_templates: (String month) -> void
+end
