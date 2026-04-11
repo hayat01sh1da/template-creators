@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 require 'date'
 require 'fileutils'
 
@@ -7,6 +9,10 @@ class Application
 
   USERNAMES = ['hayat01sh1da'].freeze
 
+  # @rbs username: String
+  # @rbs unit: String
+  # @rbs year: String
+  # @rbs return: void
   def self.run(username: 'hayat01sh1da', unit: 'd', year: Time.now.year.to_s)
     instance = new(username:, unit:, year:)
     instance.validate_username!
@@ -15,16 +21,22 @@ class Application
     instance.run
   end
 
+  # @rbs username: String
+  # @rbs unit: String
+  # @rbs year: String
+  # @rbs return: void
   def initialize(username: 'hayat01sh1da', unit: 'd', year: Time.now.year.to_s)
     @username = username
     @unit     = unit
     @year     = year
   end
 
+  # @rbs return: void
   def validate_username!
     raise ValueError, "#{username} is NOT a permitted username." unless USERNAMES.include?(username)
   end
 
+  # @rbs return: String
   def validate_unit!
     case unit
     when 'd', 'w', 'm'
@@ -34,6 +46,7 @@ class Application
     end
   end
 
+  # @rbs return: String
   def validate_year!
     Integer(year)
     if year.length > 4
@@ -45,6 +58,7 @@ class Application
     end
   end
 
+  # @rbs return: void
   def run
     Date::MONTHNAMES.compact.each.with_index(1) { |month, i|
       index     = sprintf('%02d', i)
@@ -71,6 +85,7 @@ class Application
 
   attr_reader :username, :unit, :year
 
+  # @rbs return: String
   def full_unit
     case unit
     when 'd'
@@ -82,27 +97,42 @@ class Application
     end
   end
 
+  # @rbs month: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
   def is_monday?(month, day)
     Time.new(year, month, day).monday?
   end
 
+  # @rbs month: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
   def is_saturday?(month, day)
     Time.new(year, month, day).saturday?
   end
 
+  # @rbs month: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
   def is_sunday?(month, day)
     Time.new(year, month, day).sunday?
   end
 
+  # @rbs month: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
   def is_weekend?(month, day)
     date = Time.new(year, month, day)
     date.saturday? || date.sunday?
   end
 
+  # @rbs return: bool
   def is_leap_year?
     (year.to_i % 400).zero? || (!!(year.to_i % 100).nonzero? && (year.to_i % 4).zero?)
   end
 
+  # @rbs date: String
+  # @rbs return: String
   def body(date)
     text  = []
     text << "# TITLE on #{date}\n\n"
@@ -135,6 +165,11 @@ class Application
     text.join
   end
 
+  # @rbs directory: String
+  # @rbs index: String
+  # @rbs day: String
+  # @rbs month: String
+  # @rbs return: void
   def export_template(directory, index, day = '', month)
     date     =  []
     date     << "#{day} " unless day.empty?
@@ -144,6 +179,8 @@ class Application
     IO.write(filename, body(date.join)) unless File.exist?(filename)
   end
 
+  # @rbs month: String
+  # @rbs return: void
   def create_templates(month)
     1.upto(31).each { |d|
       case month

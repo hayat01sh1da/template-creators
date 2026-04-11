@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 require_relative './src/application'
 
 puts 'Provide your username(Default: hayat01sh1da)'
