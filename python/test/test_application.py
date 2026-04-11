@@ -7,14 +7,14 @@ sys.path.append('./src')
 from application import Application
 
 class TestApplication(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.username       = 'hayat01sh1da'
         self.year           = '2100'
         self.base_dir       = os.path.join('..', '..', 'working-report', self.username)
         self.template_files = os.path.join('..', '..', 'working-report', self.username, self.year, '**', '*.md')
         self.pycaches       = glob.glob(os.path.join('.', '**', '__pycache__'), recursive = True)
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         destination_dir = os.path.join(self.base_dir, self.year)
         if os.path.exists(destination_dir):
             shutil.rmtree(destination_dir)
@@ -26,7 +26,7 @@ class TestApplication(unittest.TestCase):
 
     # private
 
-    def __check_template_files__(self, unit):
+    def __check_template_files__(self, unit: str) -> None:
         filepath = os.path.join('..', 'testing_file_lists', f'{unit}_templates.txt')
         with open(filepath) as f:
             expected_templates = f.read().split('\n')
@@ -36,47 +36,47 @@ class TestApplication(unittest.TestCase):
             actual_templates.sort()
         self.assertListEqual(actual_templates, expected_templates)
 
-    def __has_no_template__(self):
+    def __has_no_template__(self) -> None:
         len(glob.glob(os.path.join(self.template_files), recursive = True)) == 0
 
 class TestRegularCase(TestApplication):
-    def test_run_by_daily_unit(self):
+    def test_run_by_daily_unit(self) -> None:
         app = Application(username = self.username, unit = 'd', year = self.year)
         app.run()
         self.__check_template_files__('daily')
 
-    def test_run_by_weekly_unit(self):
+    def test_run_by_weekly_unit(self) -> None:
         app = Application(username = self.username, unit = 'w', year = self.year)
         app.run()
         self.__check_template_files__('weekly')
 
-    def test_run_by_monthly_unit(self):
+    def test_run_by_monthly_unit(self) -> None:
         app = Application(username = self.username, unit = 'm', year = self.year)
         app.run()
         self.__check_template_files__('monthly')
 
 class TestIrregularCase(TestApplication):
-    def test_initialize_with_invalid_username(self):
+    def test_initialize_with_invalid_username(self) -> None:
         with self.assertRaises(ValueError) as cm:
             Application(username = 'InvalidUsername', unit = 'foobar', year = self.year).run()
         self.assertEqual('InvalidUsername is NOT a permitted username.', str(cm.exception))
 
-    def test_initialize_with_invalid_unit(self):
+    def test_initialize_with_invalid_unit(self) -> None:
         with self.assertRaises(ValueError) as cm:
             Application(username = self.username, unit = 'foobar', year = self.year).run()
         self.assertEqual('Provide d, w or m as a valid unit.', str(cm.exception))
 
-    def test_initialize_with_non_digit_argument(self):
+    def test_initialize_with_non_digit_argument(self) -> None:
         with self.assertRaises(ValueError) as cm:
             Application(username = self.username, year = 'foobar')
         self.assertEqual('invalid literal for int() with base 10: \'foobar\'', str(cm.exception))
 
-    def test_initialize_with_invalid_value_as_year(self):
+    def test_initialize_with_invalid_value_as_year(self) -> None:
         with self.assertRaises(ValueError) as cm:
             Application(username = self.username, year = '20233')
         self.assertEqual('Year must be 4 digits.', str(cm.exception))
 
-    def test_initialize_with_older_year(self):
+    def test_initialize_with_older_year(self) -> None:
         with self.assertRaises(ValueError) as cm:
             Application(username = self.username, year = '2022')
         self.assertEqual('Provide newer than or equal to the current year.', str(cm.exception))

@@ -3,7 +3,7 @@ import datetime
 import calendar
 
 class Application:
-    def __init__(self, username = 'hayat01sh1da', unit = 'd', year = datetime.date.today().strftime('%Y')):
+    def __init__(self, username: str = 'hayat01sh1da', unit: str = 'd', year: str = datetime.date.today().strftime('%Y')) -> None:
         USERNAMES = ('hayat01sh1da')
         if not username in USERNAMES:
             raise ValueError(f'{username} is NOT a permitted username.')
@@ -23,7 +23,7 @@ class Application:
         for i in range(1, 13):
             self.months.append(calendar.month_name[i])
 
-    def run(self):
+    def run(self) -> None:
         for i, month in enumerate(self.months):
             index     = f'{i + 1:02}'
             directory = os.path.join('..', '..', 'working-report', self.username, f'{self.year}', f'{index}_{month}')
@@ -50,7 +50,7 @@ class Application:
 
     # private
 
-    def __full_unit__(self):
+    def __full_unit__(self) -> str:
         match self.unit:
             case 'd':
                 return 'daily'
@@ -59,7 +59,7 @@ class Application:
             case 'm':
                 return 'monthly'
 
-    def __is_monday__(self, month, day):
+    def __is_monday__(self, month: int, day: int) -> bool:
         # 0: Monday
         # 1: Tuesday
         # 2: Wednesday
@@ -69,7 +69,7 @@ class Application:
         # 6: Sunday
         return datetime.date(int(self.year), month, day).weekday() == 0
 
-    def __is_saturday__(self, month, day):
+    def __is_saturday__(self, month: int, day: int) -> bool:
         # 0: Monday
         # 1: Tuesday
         # 2: Wednesday
@@ -79,7 +79,7 @@ class Application:
         # 6: Sunday
         return datetime.date(int(self.year), month, day).weekday() == 5
 
-    def __is_sunday__(self, month, day):
+    def __is_sunday__(self, month: int, day: int) -> bool:
         # 0: Monday
         # 1: Tuesday
         # 2: Wednesday
@@ -89,14 +89,14 @@ class Application:
         # 6: Sunday
         return datetime.date(int(self.year), month, day).weekday() == 6
 
-    def __is_weekend__(self, month, day):
+    def __is_weekend__(self, month: int, day: int) -> bool:
         date = datetime.date(int(self.year), month, day).weekday()
         return date == 5 or date == 6
 
-    def __is_leap_year__(self):
+    def __is_leap_year__(self) -> bool:
         return int(self.year) % 400 == 0 or (int(self.year) % 100 != 0 and int(self.year) % 4 == 0)
 
-    def __body__(self, date):
+    def __body__(self, date: str) -> str:
         text =  "# TITLE on #{date}\n\n"
         text += "## 1. CATEGORY\n\n"
         text += "### 1-1. SUBCATEGORY\n\n"
@@ -126,7 +126,7 @@ class Application:
         text += "- ITEM\n"
         return text
 
-    def __export_template__(self, directory, index, day = '', month = ''):
+    def __export_template__(self, directory: str, index: str, day: str = '', month: str = '') -> None:
         date = ''
         if not len(day) == 0:
             date += f'{day} '
@@ -136,7 +136,7 @@ class Application:
         with open(filename, 'w') as f:
             f.write(self.__body__(date))
 
-    def __create_template__(self, d, directory, index, month):
+    def __create_template__(self, d: int, directory: str, index: str, month: str) -> None:
         day = f'{d:02}'
         if self.unit == 'd':
             if self.__is_weekend__(int(index), d):
