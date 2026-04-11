@@ -36,6 +36,14 @@ jobs:
       # change this to (see https://github.com/ruby/setup-ruby#versioning):
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
+      - name: Install Gems
+        run: gem install rbs-inline steep
       - name: Run Minitest
         working-directory: ./ruby
         run: ruby test/application_test.rb
+
+      - name: Run Steep
+        working-directory: ./ruby
+        run: |
+          rbs-inline --output sig/generated/ .
+          steep check
