@@ -36,6 +36,11 @@ jobs:
       # change this to (see https://github.com/ruby/setup-ruby#versioning):
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
+      - name: Install Gems
+        run: gem install rubocop rubocop-minitest rubocop-performance
       - name: Run Minitest
         working-directory: ./ruby
         run: ruby test/application_test.rb
+      - name: Run RuboCop
+        working-directory: ./ruby
+        run: rubocop
