@@ -37,11 +37,13 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
       - name: Install Gems
-        run: gem install rbs-inline steep
+        run: gem install rubocop rubocop-minitest rubocop-performance rbs-inline steep
       - name: Run Minitest
         working-directory: ./ruby
         run: ruby test/application_test.rb
-
+      - name: Run RuboCop
+        working-directory: ./ruby
+        run: rubocop
       - name: Run Steep
         working-directory: ./ruby
         run: |
