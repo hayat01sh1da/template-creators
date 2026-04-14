@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 D = Steep::Diagnostic
 
 target :app do
-  check "main.rb"
-  check "src"
-  check "test"
-  signature "sig"
+  check 'main.rb'
+  check 'src'
+  check 'test'
+  signature 'sig'
 
-  library "date"
-  library "fileutils"
+  library 'date'
+  library 'fileutils'
 
   configure_code_diagnostics(D::Ruby.default)
 end
