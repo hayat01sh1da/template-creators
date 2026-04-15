@@ -10,6 +10,7 @@ target :app do
 
   library 'date'
   library 'fileutils'
+  library 'minitest'
 
   configure_code_diagnostics(D::Ruby.default)
 end
