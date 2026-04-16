@@ -134,7 +134,7 @@ class Application
   # @rbs date: String
   # @rbs return: String
   def body(date)
-    text  = []
+    text  = Array.new
     text << "# TITLE on #{date}\n\n"
     text << "## 1. CATEGORY\n\n"
     text << "### 1-1. SUBCATEGORY\n\n"
@@ -171,7 +171,7 @@ class Application
   # @rbs month: String
   # @rbs return: void
   def export_template(directory: '', index: '', day: '', month: '')
-    date     =  []
+    date     =  Array.new
     date     << "#{day} " unless day.empty?
     date     << "#{month} #{year}"
     filename = File.join(directory, "#{year}#{index}#{day}_#{full_unit}_working_report.md")
