@@ -69,14 +69,14 @@ class Application
           day = sprintf('%02d', d)
           if unit == 'd'
             next if is_weekend?(i, d)
-            export_template(directory, index, day, month)
+            export_template(directory:, index:, day:, month:)
           else
             next unless is_monday?(i, d)
-            export_template(directory, index, day, month)
+            export_template(directory:, index:, day:, month:)
           end
         }
       when 'm'
-        export_template(directory, index, month)
+        export_template(directory:, index:, month:)
       end
     }
   end
@@ -170,7 +170,7 @@ class Application
   # @rbs day: String
   # @rbs month: String
   # @rbs return: void
-  def export_template(directory, index, day = '', month)
+  def export_template(directory: '', index: '', day: '', month: '')
     date     =  []
     date     << "#{day} " unless day.empty?
     date     << "#{month} #{year}"

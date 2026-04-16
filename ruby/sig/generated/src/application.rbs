@@ -76,7 +76,7 @@ class Application
   # @rbs day: String
   # @rbs month: String
   # @rbs return: void
-  def export_template: (String directory, String index, ?String day) -> void
+  def export_template: (?directory: String, ?index: String, ?day: String, ?month: String) -> void
 
   # @rbs month: String
   # @rbs return: void
