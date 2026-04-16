@@ -94,6 +94,8 @@ class Application
       'weekly'
     when 'm'
       'monthly'
+    else
+      ''
     end
   end
 
