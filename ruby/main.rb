@@ -11,6 +11,6 @@ unit = gets&.chomp&.strip
 puts 'Provide the specific year you would like to create working report templates for(Default: the current year)'
 year = gets&.chomp&.strip
 
-params = { username:, unit:, year: }.reject { |_, value| value.empty? }
+params = { username:, unit:, year: }.reject { |_, value| value&.empty? }
 
 Application.run(**params)
