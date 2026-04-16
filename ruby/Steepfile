@@ -4,6 +4,7 @@ D = Steep::Diagnostic
 
 target :app do
   check 'main.rb'
+  check 'exec'
   check 'src'
   check 'test'
   signature 'sig'
