@@ -80,5 +80,5 @@ class Application
 
   # @rbs month: String
   # @rbs return: void
-  def create_templates: (String month) -> void
+  def create_templates: (String month) ?{ (?) -> untyped } -> void
 end
