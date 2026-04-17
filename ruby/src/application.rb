@@ -185,7 +185,7 @@ class Application
 
   # @rbs month: String
   # @rbs return: void
-  def create_templates(month, &block)
+  def create_templates(month, &)
     1.upto(31).each { |d|
       case month
       when 'February'
