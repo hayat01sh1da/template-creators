@@ -133,10 +133,11 @@ class Application
     (year.to_i % 400).zero? || (!!(year.to_i % 100).nonzero? && (year.to_i % 4).zero?)
   end
 
+  # @rbs array: Array[untyped]
   # @rbs date: String
   # @rbs return: String
-  def body(date)
-    text  = Array.new
+  def body(date, array = [])
+    text  = array
     text << "# TITLE on #{date}\n\n"
     text << "## 1. CATEGORY\n\n"
     text << "### 1-1. SUBCATEGORY\n\n"
@@ -171,9 +172,10 @@ class Application
   # @rbs index: String
   # @rbs day: String
   # @rbs month: String
+  # @rbs array: Array[untyped]
   # @rbs return: void
-  def export_template(directory: '', index: '', day: '', month: '')
-    date     =  Array.new
+  def export_template(directory: '', index: '', day: '', month: '', array: [])
+    date     =  array
     date     << "#{day} " unless day.empty?
     date     << "#{month} #{year}"
     filename = File.join(directory, "#{year}#{index}#{day}_#{full_unit}_working_report.md")

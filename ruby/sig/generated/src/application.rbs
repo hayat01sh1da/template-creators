@@ -67,16 +67,18 @@ class Application
   # @rbs return: bool
   def is_leap_year?: () -> bool
 
+  # @rbs array: Array[untyped]
   # @rbs date: String
   # @rbs return: String
-  def body: (String date) -> String
+  def body: (String date, ?Array[untyped] array) -> String
 
   # @rbs directory: String
   # @rbs index: String
   # @rbs day: String
   # @rbs month: String
+  # @rbs array: Array[untyped]
   # @rbs return: void
-  def export_template: (?directory: String, ?index: String, ?day: String, ?month: String) -> void
+  def export_template: (?directory: String, ?index: String, ?day: String, ?month: String, ?array: Array[untyped]) -> void
 
   # @rbs month: String
   # @rbs return: void
