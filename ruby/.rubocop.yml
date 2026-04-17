@@ -9,3 +9,9 @@ require:
 AllCops:
   TargetRubyVersion: 4.0
   NewCops: enable
+
+Metrics/ClassLength:
+  CountAsOne: ['array', 'hash', 'method_call']
+  CountComments: false
+  CountEmptyLines: false
+  Max: 250

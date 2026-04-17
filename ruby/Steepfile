@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+D = Steep::Diagnostic
+
+target :app do
+  check 'main.rb'
+  check 'exec'
+  check 'src'
+  check 'test'
+  signature 'sig'
+
+  library 'date'
+  library 'fileutils'
+  library 'minitest'
+
+  configure_code_diagnostics(D::Ruby.default)
+end
