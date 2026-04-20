@@ -8,3 +8,13 @@ runs:
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+    - name: Bundle Install with Caching
+      shell: bash
+      working-directory: ./ruby
+      run: |
+        mkdir -p vendor/bundle
+        bundle config set path vendor/bundle
+        bundle install
+        bundle lock --add-checksums

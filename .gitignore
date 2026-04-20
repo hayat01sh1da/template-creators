@@ -1,2 +1,5 @@
+# Ruby
+ruby/**/vendor/**
+
 # Python
 python/**/__pycache__/
