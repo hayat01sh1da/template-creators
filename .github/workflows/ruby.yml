@@ -43,6 +43,7 @@ jobs:
       rubocop-changes: ${{ steps.rubocop.outputs.changes }}
       steep-changes: ${{ steps.steep.outputs.changes }}
     steps:
+      - uses: actions/checkout@v6
       - name: Change Detection
         uses: dorny/paths-filter@v4
         id: change-detection
