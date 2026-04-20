@@ -1,0 +1,10 @@
+name: Setup Ruby Environment
+description: Setup Ruby with caching and dependency installation
+
+runs:
+  using: composite
+  steps:
+    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
+    # change this to (see https://github.com/ruby/setup-ruby#versioning):
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1

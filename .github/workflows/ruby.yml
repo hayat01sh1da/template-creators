@@ -33,27 +33,38 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
-  test:
+  minitest:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
-      # change this to (see https://github.com/ruby/setup-ruby#versioning):
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-      - name: Install Gems
-        run: gem install rubocop rubocop-minitest rubocop-performance rbs-inline steep
-      - name: Run Minitest
+      - uses: ./.github/actions/setup-ruby
+      - name: Minitest
         working-directory: ./ruby
         run: ruby test/application_test.rb
-      - name: Run RuboCop
-        working-directory: ./ruby
-        run: rubocop
-      - name: Run Steep
+  rubocop:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-ruby
+      - name: RuboCop
         working-directory: ./ruby
         run: |
+          gem install rubocop rubocop-minitest rubocop-performance
+          rubocop
+  steep:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-ruby
+      - name: Steep
+        working-directory: ./ruby
+        run: |
+          gem install rbs-inline steep
           rbs-inline --output sig/generated/ .
           steep check
