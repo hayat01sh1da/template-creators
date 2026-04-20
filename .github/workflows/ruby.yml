@@ -12,16 +12,24 @@ on:
     branches:
       - master
     paths:
-      - '.github/workflows/ruby.yml'
-      - '.ruby-version'
-      - 'testing_file_lists/*txt'
-      - 'ruby/**/*.rb'
+      - .github/actions/setup-ruby/action.yml
+      - .github/workflows/ruby.yml
+      - .ruby-version
+      - ruby/**/*.rb
+      - ruby/**/*.rbs
+      - ruby/rubocop.yml
+      - ruby/rubocop_todo.yml
+      - ruby/Steepfile
   pull_request:
     paths:
-      - '.github/workflows/ruby.yml'
-      - '.ruby-version'
-      - 'testing_file_lists/*txt'
-      - 'ruby/**/*.rb'
+      - .github/actions/setup-ruby/action.yml
+      - .github/workflows/ruby.yml
+      - .ruby-version
+      - ruby/**/*.rb
+      - ruby/**/*.rbs
+      - ruby/rubocop.yml
+      - ruby/rubocop_todo.yml
+      - ruby/Steepfile
 
 permissions:
   contents: read
