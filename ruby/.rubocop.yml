@@ -2,7 +2,7 @@ inherit_from: .rubocop_todo.yml
 
 # Reference: https://github.com/rubocop/ruby-style-guide
 
-require:
+plugins:
   - rubocop-minitest
   - rubocop-performance
 
