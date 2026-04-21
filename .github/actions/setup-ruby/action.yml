@@ -14,7 +14,6 @@ runs:
       shell: bash
       working-directory: ./ruby
       run: |
-        mkdir -p vendor/bundle
         bundle config set path vendor/bundle
         bundle install
         bundle lock --add-checksums
