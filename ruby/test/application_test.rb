@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 require 'minitest/autorun'
 require_relative '../src/application'
 

@@ -2,7 +2,15 @@
 
 - Ruby 4.0.2
 
-## 2. Execution
+## 2. Install Gems via Gemfile and Bundler
+
+```command
+$ bundle config set path vendor/bundle
+$ bundle install
+$ bundle lock --add-checksums
+```
+
+## 3. Execution
 
 ```command
 $ cd ./ruby

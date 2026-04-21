@@ -1,0 +1,24 @@
+name: Setup Ruby Environment
+description: Setup Ruby with caching and dependency installation
+inputs:
+  job-name:
+    description: The name of the job that will use this action
+    required: true
+
+runs:
+  using: composite
+  steps:
+    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
+    # change this to (see https://github.com/ruby/setup-ruby#versioning):
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+    - name: Bundle Install with Caching
+      if: ${{ inputs.job-name != 'Minitest' }}
+      shell: bash
+      working-directory: ./ruby
+      run: |
+        bundle config set path vendor/bundle
+        bundle install --with=${{ inputs.job-name }}
+        bundle lock --add-checksums
