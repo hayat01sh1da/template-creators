@@ -1,5 +1,9 @@
 name: Setup Ruby Environment
 description: Setup Ruby with caching and dependency installation
+inputs:
+  job-name:
+    description: The name of the job that will use this action
+    required: true
 
 runs:
   using: composite
@@ -11,9 +15,10 @@ runs:
       with:
         bundler-cache: true
     - name: Bundle Install with Caching
+      if: ${{ inputs.job-name != 'Minitest' }}
       shell: bash
       working-directory: ./ruby
       run: |
         bundle config set path vendor/bundle
-        bundle install
+        bundle install --with=${{ inputs.job-name }}
         bundle lock --add-checksums
