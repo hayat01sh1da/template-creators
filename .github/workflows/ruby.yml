@@ -81,6 +81,19 @@ jobs:
       - name: Minitest
         working-directory: ./ruby
         run: ruby test/application_test.rb
+  brakeman:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    needs: change-detection
+    if: needs.change-detection.outputs.ruby-changes == 'true'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-ruby
+        with:
+          job-name: Brakeman
+      - name: Brakeman
+        working-directory: ./ruby
+        run: brakeman --no-pager
   rubocop:
     timeout-minutes: 10
     runs-on: ubuntu-latest
