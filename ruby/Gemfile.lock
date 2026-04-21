@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.3)
+    brakeman (8.0.4)
+      racc
     concurrent-ruby (1.3.6)
     csv (3.3.5)
     ffi (1.17.4-x86_64-linux-gnu)
@@ -85,6 +87,7 @@ PLATFORMS
   x86_64-linux-gnu
 
 DEPENDENCIES
+  brakeman (~> 8.0.4)
   rbs-inline (~> 0.13.0)
   rubocop (~> 1.86.1)
   rubocop-minitest (~> 0.39.1)
@@ -93,6 +96,7 @@ DEPENDENCIES
 
 CHECKSUMS
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
+  brakeman (8.0.4) sha256=7bf921fa9638544835df9aa7b3e720a9a72c0267f34f92135955edd80d4dcf6f
   concurrent-ruby (1.3.6) sha256=6b56837e1e7e5292f9864f34b69c5a2cbc75c0cf5338f1ce9903d10fa762d5ab
   csv (3.3.5) sha256=6e5134ac3383ef728b7f02725d9872934f523cb40b961479f69cf3afa6c8e73f
   ffi (1.17.4-x86_64-linux-gnu) sha256=9d3db14c2eae074b382fa9c083fe95aec6e0a1451da249eab096c34002bc752d
