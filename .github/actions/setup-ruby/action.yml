@@ -20,5 +20,6 @@ runs:
       working-directory: ./ruby
       run: |
         bundle config set path vendor/bundle
-        bundle install --with=${{ inputs.job-name }}
+        bundle config set with ${{ inputs.job-name }}
+        bundle install
         bundle lock --add-checksums
