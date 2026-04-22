@@ -15,7 +15,7 @@ runs:
       with:
         bundler-cache: true
     - name: Bundle Install with Caching
-      if: ${{ inputs.job-name != 'Minitest' }}
+      if: ${{ inputs.job-name != 'minitest' }}
       shell: bash
       working-directory: ./ruby
       run: |

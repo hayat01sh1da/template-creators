@@ -87,7 +87,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-ruby
         with:
-          job-name: Minitest
+          job-name: minitest
       - name: Minitest
         working-directory: ./ruby
         run: ruby test/application_test.rb
@@ -100,7 +100,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-ruby
         with:
-          job-name: RuboCop
+          job-name: rubocop
       - name: RuboCop
         working-directory: ./ruby
         run: bundle exec rubocop
@@ -113,7 +113,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-ruby
         with:
-          job-name: Steep
+          job-name: steep
       - name: Steep
         working-directory: ./ruby
         run: |
