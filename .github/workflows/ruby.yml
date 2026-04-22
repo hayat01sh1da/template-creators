@@ -53,31 +53,31 @@ jobs:
         id: change-detection
         with:
           filters: |
-            ruby: |
-              .github/actions/setup-ruby/action.yml
-              .github/workflows/ruby.yml
-              .ruby-version
-              ruby/**/*.rb
-              ruby/Gemfile
-              ruby/Gemfile.lock
-            rubocop: |
-              .github/actions/setup-ruby/action.yml
-              .github/workflows/ruby.yml
-              .ruby-version
-              ruby/**/*.rb
-              ruby/Gemfile
-              ruby/Gemfile.lock
-              ruby/rubocop.yml
-              ruby/rubocop_todo.yml
-            steep: |
-              .github/actions/setup-ruby/action.yml
-              .github/workflows/ruby.yml
-              .ruby-version
-              ruby/**/*.rb
-              ruby/**/*.rbs
-              ruby/Gemfile
-              ruby/Gemfile.lock
-              ruby/Steepfile
+            ruby:
+              - .github/actions/setup-ruby/action.yml
+              - .github/workflows/ruby.yml
+              - .ruby-version
+              - ruby/**/*.rb
+              - ruby/Gemfile
+              - ruby/Gemfile.lock
+            rubocop:
+              - .github/actions/setup-ruby/action.yml
+              - .github/workflows/ruby.yml
+              - .ruby-version
+              - ruby/**/*.rb
+              - ruby/Gemfile
+              - ruby/Gemfile.lock
+              - ruby/rubocop.yml
+              - ruby/rubocop_todo.yml
+            steep:
+              - .github/actions/setup-ruby/action.yml
+              - .github/workflows/ruby.yml
+              - .ruby-version
+              - ruby/**/*.rb
+              - ruby/**/*.rbs
+              - ruby/Gemfile
+              - ruby/Gemfile.lock
+              - ruby/Steepfile
   minitest:
     timeout-minutes: 10
     runs-on: ubuntu-latest
