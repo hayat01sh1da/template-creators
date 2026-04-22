@@ -19,7 +19,7 @@ runs:
       shell: bash
       working-directory: ./ruby
       run: |
-        bundle config set --local path vendor/bundle
+        rm -rf .bundle/**
         bundle config set --local with ${{ inputs.job-name }}
         bundle install
         bundle lock --add-checksums
