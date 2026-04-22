@@ -15,10 +15,11 @@ runs:
       with:
         bundler-cache: true
     - name: Bundle Install with Caching
-      if: ${{ inputs.job-name != 'Minitest' }}
+      if: ${{ inputs.job-name != 'minitest' }}
       shell: bash
       working-directory: ./ruby
       run: |
-        bundle config set path vendor/bundle
-        bundle install --with=${{ inputs.job-name }}
+        rm -rf .bundle/**
+        bundle config set --local with ${{ inputs.job-name }}
+        bundle install
         bundle lock --add-checksums
