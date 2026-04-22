@@ -5,7 +5,7 @@
 ## 2. Install Gems via Gemfile and Bundler
 
 ```command
-$ bundle config set path vendor/bundle
+$ bundle config set --local path vendor/bundle
 $ bundle install
 $ bundle lock --add-checksums
 ```
