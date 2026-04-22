@@ -43,9 +43,9 @@ jobs:
   change-detection:
     runs-on: ubuntu-latest
     outputs:
-      ruby-changes: ${{ steps.ruby.outputs.changes }}
-      rubocop-changes: ${{ steps.rubocop.outputs.changes }}
-      steep-changes: ${{ steps.steep.outputs.changes }}
+      ruby-changes: ${{ steps.change-detection.outputs.ruby }}
+      rubocop-changes: ${{ steps.change-detection.outputs.rubocop}}
+      steep-changes: ${{ steps.change-detection.outputs.steep}}
     steps:
       - uses: actions/checkout@v6
       - name: Change Detection
