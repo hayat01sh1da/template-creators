@@ -17,6 +17,8 @@ on:
       - .ruby-version
       - ruby/**/*.rb
       - ruby/**/*.rbs
+      - ruby/Gemfile
+      - ruby/Gemfile.lock
       - ruby/rubocop.yml
       - ruby/rubocop_todo.yml
       - ruby/Steepfile
@@ -27,6 +29,8 @@ on:
       - .ruby-version
       - ruby/**/*.rb
       - ruby/**/*.rbs
+      - ruby/Gemfile
+      - ruby/Gemfile.lock
       - ruby/rubocop.yml
       - ruby/rubocop_todo.yml
       - ruby/Steepfile
@@ -54,11 +58,15 @@ jobs:
               .github/workflows/ruby.yml
               .ruby-version
               ruby/**/*.rb
+              ruby/Gemfile
+              ruby/Gemfile.lock
             rubocop: |
               .github/actions/setup-ruby/action.yml
               .github/workflows/ruby.yml
               .ruby-version
               ruby/**/*.rb
+              ruby/Gemfile
+              ruby/Gemfile.lock
               ruby/rubocop.yml
               ruby/rubocop_todo.yml
             steep: |
@@ -67,6 +75,8 @@ jobs:
               .ruby-version
               ruby/**/*.rb
               ruby/**/*.rbs
+              ruby/Gemfile
+              ruby/Gemfile.lock
               ruby/Steepfile
   minitest:
     timeout-minutes: 10
