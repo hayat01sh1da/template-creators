@@ -20,6 +20,5 @@ runs:
       working-directory: ./ruby
       run: |
         rm -rf .bundle/**
-        bundle config set --local with ${{ inputs.job-name }}
         bundle install
         bundle lock --add-checksums
