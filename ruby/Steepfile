@@ -6,10 +6,22 @@ target :app do
   check 'main.rb'
   check 'exec'
   check 'src'
-  check 'test'
+  ignore 'test'
   signature 'sig'
 
   library 'date'
+  library 'fileutils'
+
+  configure_code_diagnostics(D::Ruby.default)
+end
+
+target :test do
+  ignore 'main.rb'
+  ignore 'exec'
+  ignore 'src'
+  check 'test'
+  signature 'sig'
+
   library 'fileutils'
   library 'minitest'
 
