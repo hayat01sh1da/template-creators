@@ -117,5 +117,4 @@ jobs:
       - name: Steep
         working-directory: ./ruby
         run: |
-          bundle exec rbs-inline --output sig/generated/ .
           bundle exec steep check
