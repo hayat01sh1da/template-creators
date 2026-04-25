@@ -1,0 +1,41 @@
+# Generated from test/application_test.rb with RBS::Inline
+
+class ApplicationTest < Minitest::Test
+  def setup: () -> untyped
+
+  def teardown: () -> untyped
+
+  private
+
+  attr_reader username: untyped
+
+  attr_reader year: untyped
+
+  attr_reader base_dir: untyped
+
+  attr_reader template_files: untyped
+
+  def check_template_files: (untyped unit) -> untyped
+
+  def no_template?: () -> untyped
+end
+
+class RegularCaseTest < ApplicationTest
+  def test_run_by_daily_unit: () -> untyped
+
+  def test_run_by_weekly_unit: () -> untyped
+
+  def test_run_by_monthly_unit: () -> untyped
+end
+
+class IrregularCaseTest < ApplicationTest
+  def test_initialize_with_invalid_username: () -> untyped
+
+  def test_initialize_with_invalid_unit: () -> untyped
+
+  def test_initialize_with_non_digit_argument: () -> untyped
+
+  def test_initialize_with_invalid_value_as_year: () -> untyped
+
+  def test_initialize_with_older_year: () -> untyped
+end
