@@ -117,5 +117,4 @@ jobs:
       - name: Steep
         working-directory: ./ruby
         run: |
-          bundle exec steep check app
-          bundle exec steep check test
+          bundle exec steep check
