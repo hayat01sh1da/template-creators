@@ -13,5 +13,4 @@ AllCops:
 Metrics/ClassLength:
   CountAsOne: ['array', 'hash', 'method_call']
   CountComments: false
-  CountEmptyLines: false
   Max: 250

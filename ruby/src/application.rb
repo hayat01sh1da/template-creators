@@ -1,7 +1,6 @@
 # rbs_inline: enabled
 
 require 'date'
-require 'fileutils'
 
 class Application
   class ValueError < StandardError; end
