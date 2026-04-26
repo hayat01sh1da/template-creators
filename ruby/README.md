@@ -41,15 +41,6 @@ Finished in 5.479053s, 1.4601 runs/s, 2.3727 assertions/s.
 
 ```command
 $ rubocop
-Warning: Metrics/ClassLength does not support CountEmptyLines parameter.
-
-Supported parameters are:
-
-  - Enabled
-  - CountComments
-  - Max
-  - CountAsOne
-
 Inspecting 5 files
 .....
 
