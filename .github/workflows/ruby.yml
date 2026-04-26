@@ -19,8 +19,8 @@ on:
       - ruby/**/*.rbs
       - ruby/Gemfile
       - ruby/Gemfile.lock
-      - ruby/rubocop.yml
-      - ruby/rubocop_todo.yml
+      - ruby/.rubocop.yml
+      - ruby/.rubocop_todo.yml
       - ruby/Steepfile
   pull_request:
     paths:
@@ -31,8 +31,8 @@ on:
       - ruby/**/*.rbs
       - ruby/Gemfile
       - ruby/Gemfile.lock
-      - ruby/rubocop.yml
-      - ruby/rubocop_todo.yml
+      - ruby/.rubocop.yml
+      - ruby/.rubocop_todo.yml
       - ruby/Steepfile
 
 permissions:
@@ -67,8 +67,8 @@ jobs:
               - ruby/**/*.rb
               - ruby/Gemfile
               - ruby/Gemfile.lock
-              - ruby/rubocop.yml
-              - ruby/rubocop_todo.yml
+              - ruby/.rubocop.yml
+              - ruby/.rubocop_todo.yml
             steep:
               - .github/actions/setup-ruby/action.yml
               - .github/workflows/ruby.yml
