@@ -1,0 +1,20 @@
+name: Setup Python Environment
+description: Setup Python with caching and dependency installation
+
+runs:
+  using: composite
+  steps:
+    # To automatically get bug fixes and new Python versions for ruby/setup-ruby,
+    # change this to (see https://github.com/actions/setup-python#versioning):
+    - name: Set up Python
+      uses: actions/setup-python@v6
+    - name: Pip Install with Caching
+      shell: bash
+      working-directory: ./python
+      run: |
+        pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      env:
+      # Cache pip dependencies
+      # See https://github.com/actions/cache/blob/main/examples.md#pip
+        PIP_CACHE_DIR: ${{ runner.temp }}/pip_cache
