@@ -25,14 +25,14 @@ Provide the specific year you would like to create working report templates for(
 ## 4. Unit Test
 
 ```command
-$ ruby test/application_test.rb 
-Run options: --seed 50571
+$ rake
+Run options: --seed 39473
 
 # Running:
 
 ........
 
-Finished in 5.479053s, 1.4601 runs/s, 2.3727 assertions/s.
+Finished in 11.855362s, 0.6748 runs/s, 1.0966 assertions/s.
 
 8 runs, 13 assertions, 0 failures, 0 errors, 0 skips
 ```
