@@ -1,6 +1,6 @@
 ## 1. Environment
 
-- Ruby 4.0.2
+- Ruby 4.0.3
 
 ## 2. Install Gems via Gemfile and Bundler
 
