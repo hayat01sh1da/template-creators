@@ -12,7 +12,6 @@ $ bundle lock --add-checksums
 ## 3. Execution
 
 ```command
-$ cd ./ruby
 $ ruby main.rb 
 Provide your username(Default: hayat01sh1da)
 hayat01sh1da
