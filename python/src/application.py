@@ -2,10 +2,15 @@ import os
 import datetime
 import calendar
 
+
 class Application:
-    def __init__(self, username: str = 'hayat01sh1da', unit: str = 'd', year: str = datetime.date.today().strftime('%Y')) -> None:
+    def __init__(
+            self,
+            username: str = 'hayat01sh1da',
+            unit: str = 'd',
+            year: str = datetime.date.today().strftime('%Y')) -> None:
         USERNAMES = ('hayat01sh1da')
-        if not username in USERNAMES:
+        if username not in USERNAMES:
             raise ValueError(f'{username} is NOT a permitted username.')
         match unit:
             case 'd' | 'w' | 'm':
@@ -16,17 +21,23 @@ class Application:
         if len(year) > 4:
             raise ValueError('Year must be 4 digits.')
         if int(year) < int(datetime.date.today().strftime('%Y')):
-            raise ValueError('Provide newer than or equal to the current year.')
+            raise ValueError(
+                'Provide newer than or equal to the current year.')
         self.username = username
-        self.year     = year
-        self.months   = list()
+        self.year = year
+        self.months = list()
         for i in range(1, 13):
             self.months.append(calendar.month_name[i])
 
     def run(self) -> None:
         for i, month in enumerate(self.months):
-            index     = f'{i + 1:02}'
-            directory = os.path.join('..', '..', 'working-report', self.username, f'{self.year}', f'{index}_{month}')
+            index = f'{i + 1:02}'
+            directory = os.path.join('..',
+                                     '..',
+                                     'working-report',
+                                     self.username,
+                                     f'{self.year}',
+                                     f'{index}_{month}')
             match self.unit:
                 case 'd' | 'w':
                     for d in range(1, 32):
@@ -36,15 +47,19 @@ class Application:
                                     continue
                                 elif d > 28:
                                     continue
-                                self.__create_template__(d, directory, index, month)
+                                self.__create_template__(
+                                    d, directory, index, month)
                             case 'April' | 'June' | 'September' | 'November':
                                 if d > 30:
                                     continue
-                                self.__create_template__(d, directory, index, month)
+                                self.__create_template__(
+                                    d, directory, index, month)
                             case _:
-                                self.__create_template__(d, directory, index, month)
+                                self.__create_template__(
+                                    d, directory, index, month)
                 case 'm':
-                    self.__export_template__(directory = directory, index = index, month = month)
+                    self.__export_template__(
+                        directory=directory, index=index, month=month)
                 case _:
                     raise ValueError('Provide d, w or m as a valid unit.')
 
@@ -94,10 +109,11 @@ class Application:
         return date == 5 or date == 6
 
     def __is_leap_year__(self) -> bool:
-        return int(self.year) % 400 == 0 or (int(self.year) % 100 != 0 and int(self.year) % 4 == 0)
+        return int(self.year) % 400 == 0 or (int(self.year) %
+                                             100 != 0 and int(self.year) % 4 == 0)
 
     def __body__(self, date: str) -> str:
-        text =  "# TITLE on #{date}\n\n"
+        text = "# TITLE on #{date}\n\n"
         text += "## 1. CATEGORY\n\n"
         text += "### 1-1. SUBCATEGORY\n\n"
         text += "- ITEM\n"
@@ -126,17 +142,30 @@ class Application:
         text += "- ITEM\n"
         return text
 
-    def __export_template__(self, directory: str, index: str, day: str = '', month: str = '') -> None:
+    def __export_template__(
+            self,
+            directory: str,
+            index: str,
+            day: str = '',
+            month: str = '') -> None:
         date = ''
         if not len(day) == 0:
             date += f'{day} '
         date += f'{month} {self.year}'
-        filename = os.path.join(directory, f'{self.year}{index}{day}_{self.__full_unit__()}_working_report.md')
-        os.makedirs(directory, exist_ok = True)
+        filename = os.path.join(
+            directory, f'{
+                self.year}{index}{day}_{
+                self.__full_unit__()}_working_report.md')
+        os.makedirs(directory, exist_ok=True)
         with open(filename, 'w') as f:
             f.write(self.__body__(date))
 
-    def __create_template__(self, d: int, directory: str, index: str, month: str) -> None:
+    def __create_template__(
+            self,
+            d: int,
+            directory: str,
+            index: str,
+            month: str) -> None:
         day = f'{d:02}'
         if self.unit == 'd':
             if self.__is_weekend__(int(index), d):

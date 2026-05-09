@@ -1,3 +1,5 @@
+autoflake8==0.4.1
+autopep8==2.3.2
 flake8==7.3.0
-mypy==1.20.2
+mypy==2.0.0
 pytest==9.0.3
