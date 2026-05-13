@@ -12,10 +12,10 @@ $ bundle lock --add-checksums
 ## 3. Execution
 
 ```command
-$ ruby main.rb 
+$ rake run_template_creator
 Provide your username(Default: hayat01sh1da)
 hayat01sh1da
-Provide your preferred unit d(daily - default), w(weekly) or m
+Provide your preferred unit d(daily - default), w(weekly) or m(monthly)
 d
 Provide the specific year you would like to create working report templates for(Default: the current year)
 2024
@@ -50,11 +50,11 @@ Inspecting 5 files
 
 ```command
 $ rbs-inline --output sig/generated/ .
-🎉 Generated 3 RBS files under sig/generated
+🎉 Generated 2 RBS files under sig/generated
 $ steep check
 # Type checking files:
 
-......
+....
 
 No type error detected. 🫖
 ```
