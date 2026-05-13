@@ -1,8 +1,27 @@
 # frozen_string_literal: true
 
 require 'rake/testtask'
+require_relative 'src/application'
+
 task default: :test
 
+desc 'Run Template Creator'
+Rake::Task.define_task(:run_template_creator) do
+  puts 'Provide your username(Default: hayat01sh1da)'
+  username = $stdin.gets&.chomp&.strip
+
+  puts 'Provide your preferred unit d(daily - default), w(weekly) or m(monthly)'
+  unit = $stdin.gets&.chomp&.strip
+
+  puts 'Provide the specific year you would like to create working report templates for(Default: the current year)'
+  year = $stdin.gets&.chomp&.strip
+
+  params = { username:, unit:, year: }.reject { |_, value| value&.empty? }
+
+  Application.run(**params)
+end
+
+desc 'Run all tests'
 Rake::TestTask.new do |task|
   task.pattern = File.join('.', '**', '*_test.rb')
 end
