@@ -1,122 +1,58 @@
-import unittest
-import os
 import glob
-import shutil
-import sys
-sys.path.append('./src')
+import os
+
+import pytest
+
 from application import Application
 
 
-class TestApplication(unittest.TestCase):
-    def setUp(self) -> None:
-        self.username = 'hayat01sh1da'
-        self.year = '2100'
-        self.base_dir = os.path.join(
-            '..', '..', 'working-report', self.username)
-        self.template_files = os.path.join(
-            '..',
-            '..',
-            'working-report',
-            self.username,
-            self.year,
-            '**',
-            '*.md')
-        self.pycaches = glob.glob(
-            os.path.join(
-                '.',
-                '**',
-                '__pycache__'),
-            recursive=True)
-
-    def tearDown(self) -> None:
-        destination_dir = os.path.join(self.base_dir, self.year)
-        if os.path.exists(destination_dir):
-            shutil.rmtree(destination_dir)
-        if self.__has_no_template__():
-            shutil.rmtree(self.base_dir)
-        for pycache in self.pycaches:
-            if os.path.exists(pycache):
-                shutil.rmtree(pycache)
-
-    # private
-
-    def __check_template_files__(self, unit: str) -> None:
-        filepath = os.path.join(
-            '..',
-            'testing_file_lists',
-            f'{unit}_templates.txt')
-        with open(filepath) as f:
-            expected_templates = f.read().split('\n')
-        expected_templates.pop()
-        actual_templates = glob.glob(
-            os.path.join(
-                self.template_files),
-            recursive=True)
-        if not str(type(actual_templates)) == "<class 'NoneType'>":
-            actual_templates.sort()
-        self.assertListEqual(actual_templates, expected_templates)
-
-    def __has_no_template__(self) -> None:
-        len(glob.glob(os.path.join(self.template_files), recursive=True)) == 0
+USERNAME = 'hayat01sh1da'
+YEAR = '2100'
+TEMPLATE_FILES_GLOB = os.path.join('..', '..', 'working-report', USERNAME, YEAR, '**', '*.md')
 
 
-class TestRegularCase(TestApplication):
-    def test_run_by_daily_unit(self) -> None:
-        app = Application(username=self.username, unit='d', year=self.year)
-        app.run()
-        self.__check_template_files__('daily')
-
-    def test_run_by_weekly_unit(self) -> None:
-        app = Application(username=self.username, unit='w', year=self.year)
-        app.run()
-        self.__check_template_files__('weekly')
-
-    def test_run_by_monthly_unit(self) -> None:
-        app = Application(username=self.username, unit='m', year=self.year)
-        app.run()
-        self.__check_template_files__('monthly')
+def _check_template_files(unit):
+    filepath = os.path.join('..', 'testing_file_lists', f'{unit}_templates.txt')
+    with open(filepath) as f:
+        expected = f.read().split('\n')
+    expected.pop()
+    actual = sorted(glob.glob(TEMPLATE_FILES_GLOB, recursive=True))
+    assert actual == expected
 
 
-class TestIrregularCase(TestApplication):
-    def test_initialize_with_invalid_username(self) -> None:
-        with self.assertRaises(ValueError) as cm:
-            Application(
-                username='InvalidUsername',
-                unit='foobar',
-                year=self.year).run()
-        self.assertEqual(
-            'InvalidUsername is NOT a permitted username.', str(
-                cm.exception))
-
-    def test_initialize_with_invalid_unit(self) -> None:
-        with self.assertRaises(ValueError) as cm:
-            Application(
-                username=self.username,
-                unit='foobar',
-                year=self.year).run()
-        self.assertEqual(
-            'Provide d, w or m as a valid unit.', str(
-                cm.exception))
-
-    def test_initialize_with_non_digit_argument(self) -> None:
-        with self.assertRaises(ValueError) as cm:
-            Application(username=self.username, year='foobar')
-        self.assertEqual(
-            'invalid literal for int() with base 10: \'foobar\'', str(
-                cm.exception))
-
-    def test_initialize_with_invalid_value_as_year(self) -> None:
-        with self.assertRaises(ValueError) as cm:
-            Application(username=self.username, year='20233')
-        self.assertEqual('Year must be 4 digits.', str(cm.exception))
-
-    def test_initialize_with_older_year(self) -> None:
-        with self.assertRaises(ValueError) as cm:
-            Application(username=self.username, year='2022')
-        self.assertEqual(
-            'Provide newer than or equal to the current year.', str(
-                cm.exception))
+@pytest.mark.parametrize(
+    ('unit', 'unit_name'),
+    [
+        ('d', 'daily'),
+        ('w', 'weekly'),
+        ('m', 'monthly'),
+    ],
+)
+def test_run_by_unit(unit, unit_name):
+    Application(username=USERNAME, unit=unit, year=YEAR).run()
+    _check_template_files(unit_name)
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_initialize_with_invalid_username():
+    with pytest.raises(ValueError, match=r'^InvalidUsername is NOT a permitted username\.$'):
+        Application(username='InvalidUsername', unit='foobar', year=YEAR).run()
+
+
+def test_initialize_with_invalid_unit():
+    with pytest.raises(ValueError, match=r'^Provide d, w or m as a valid unit\.$'):
+        Application(username=USERNAME, unit='foobar', year=YEAR).run()
+
+
+def test_initialize_with_non_digit_argument():
+    with pytest.raises(ValueError, match=r"^invalid literal for int\(\) with base 10: 'foobar'$"):
+        Application(username=USERNAME, year='foobar')
+
+
+def test_initialize_with_invalid_value_as_year():
+    with pytest.raises(ValueError, match=r'^Year must be 4 digits\.$'):
+        Application(username=USERNAME, year='20233')
+
+
+def test_initialize_with_older_year():
+    with pytest.raises(ValueError, match=r'^Provide newer than or equal to the current year\.$'):
+        Application(username=USERNAME, year='2022')
