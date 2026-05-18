@@ -8,7 +8,9 @@ sys.path.append('./src')
 username = input('Provide your username(Default: hayat01sh1da): ').strip()
 unit = input(
     'Provide your preferred unit d(daily - default), w(weekly) or m(monthly): ').strip()
-year = input('Provide the specific year you would like to create working report templates for(Default: the current year): ').strip()
+year = input(
+    'Provide the specific year you would like to create working report '
+    'templates for(Default: the current year): ').strip()
 
 params = dict()
 for key, value in {'username': username, 'unit': unit, 'year': year}.items():
