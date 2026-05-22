@@ -11,16 +11,19 @@ $ pip install -r requirements.txt
 ## 3. Execution
 
 ```command
-$ python main.py
-Provide your username(Default: hayat01sh1da): hayat01sh1da
-Provide your preferred unit d(daily - default), w(weekly) or m(monthly): d
-Provide the specific year you would like to create working report templates for(Default: the current year): 2024
+$ invoke run_template_creator
+Provide your username(Default: hayat01sh1da)
+hayat01sh1da
+Provide your preferred unit d(daily - default), w(weekly) or m(monthly)
+d
+Provide the specific year you would like to create working report templates for(Default: the current year)
+2024
 ```
 
 ## 4. Unit Test
 
 ```command
-$ pytest .
+$ invoke
 ============================= test session starts ==============================
 platform linux -- Python 3.14.5, pytest-9.0.3, pluggy-1.6.0
 rootdir: template-creators/python
@@ -36,7 +39,6 @@ test/test_application.py ........                                        [100%]
 
 ```command
 $ flake8 .
-./main.py:10:80: E501 line too long (88 > 79 characters)
 ./src/application.py:112:80: E501 line too long (82 > 79 characters)
 ./test/test_application.py:47:80: E501 line too long (93 > 79 characters)
 ./test/test_application.py:52:80: E501 line too long (83 > 79 characters)
