@@ -7,7 +7,10 @@ class Application
   class ValueError < StandardError; end
   class DigitLengthError < StandardError; end
 
-  USERNAMES = ['hayat01sh1da'].freeze
+  USERNAMES           = ['hayat01sh1da'].freeze
+  BODY_TEMPLATE       = File.read(File.join(__dir__, 'body_template.md')).freeze
+  FULL_UNITS          = { 'd' => 'daily', 'w' => 'weekly', 'm' => 'monthly' }.freeze
+  MONTHS_WITH_30_DAYS = %w[April June September November].freeze
 
   # @rbs username: String
   # @rbs unit: String
@@ -63,22 +66,7 @@ class Application
     Date::MONTHNAMES.compact.each.with_index(1) do |month, i|
       index     = format('%02d', i)
       directory = File.join('..', '..', 'working-report', username, year, "#{index}_#{month}")
-      case unit
-      when 'd', 'w'
-        create_templates(month) do |d|
-          day = format('%02d', d)
-          if unit == 'd'
-            next if weekend?(i, d)
-
-          else
-            next unless monday?(i, d)
-
-          end
-          export_template(directory:, index:, day:, month:)
-        end
-      when 'm'
-        export_template(directory:, index:, month:)
-      end
+      process_month(month, i, index, directory)
     end
   end
 
@@ -86,18 +74,42 @@ class Application
 
   attr_reader :username, :unit, :year
 
+  # @rbs month: String
+  # @rbs month_index: Integer
+  # @rbs index: String
+  # @rbs directory: String
+  # @rbs return: void
+  def process_month(month, month_index, index, directory)
+    case unit
+    when 'd', 'w' then process_days(month, month_index, index, directory)
+    when 'm'      then export_template(directory:, index:, month:)
+    end
+  end
+
+  # @rbs month: String
+  # @rbs month_index: Integer
+  # @rbs index: String
+  # @rbs directory: String
+  # @rbs return: void
+  def process_days(month, month_index, index, directory)
+    create_templates(month) do |d|
+      next if skip_day?(month_index, d)
+
+      day = format('%02d', d)
+      export_template(directory:, index:, day:, month:)
+    end
+  end
+
+  # @rbs month_index: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
+  def skip_day?(month_index, day)
+    unit == 'd' ? weekend?(month_index, day) : !monday?(month_index, day)
+  end
+
   # @rbs return: String
   def full_unit
-    case unit
-    when 'd'
-      'daily'
-    when 'w'
-      'weekly'
-    when 'm'
-      'monthly'
-    else
-      ''
-    end
+    FULL_UNITS.fetch(unit, '')
   end
 
   # @rbs month: Integer
@@ -134,39 +146,10 @@ class Application
     (year.to_i % 400).zero? || (!!(year.to_i % 100).nonzero? && (year.to_i % 4).zero?)
   end
 
-  # @rbs array: Array[untyped]
   # @rbs date: String
   # @rbs return: String
-  def body(date, array = [])
-    text  = array
-    text << "# TITLE on #{date}\n\n"
-    text << "## 1. CATEGORY\n\n"
-    text << "### 1-1. SUBCATEGORY\n\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "### 1-2. SUBCATEGORY\n\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "### 1-3. SUBCATEGORY\n\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "## 2. CATEGORY\n\n"
-    text << "### 2-1. SUBCATEGORY\n\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "### 2-2. SUBCATEGORY\n\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "### 2-3. SUBCATEGORY\n\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text << "- ITEM\n"
-    text.join
+  def body(date)
+    format(BODY_TEMPLATE, date)
   end
 
   # @rbs directory: String
@@ -199,8 +182,8 @@ class Application
   # @rbs return: bool
   def skip_day_of_month?(month, day)
     case month
-    when 'February'                                  then day > (leap_year? ? 29 : 28)
-    when 'April', 'June', 'September', 'November'    then day > 30
+    when 'February'           then day > (leap_year? ? 29 : 28)
+    when *MONTHS_WITH_30_DAYS then day > 30
     else false
     end
   end
