@@ -3,6 +3,8 @@
 
 require 'date'
 
+# Generates working-report markdown templates for a username under
+# `../../working-report/<username>/<year>/`, one file per day, week, or month.
 class Application
   class ValueError < StandardError; end
   class DigitLengthError < StandardError; end

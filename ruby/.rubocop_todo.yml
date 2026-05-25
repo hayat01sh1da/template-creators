@@ -7,14 +7,6 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 1
-# Configuration parameters: AllowedConstants.
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'src/application.rb'
-
-# Offense count: 1
 Style/FileOpen:
   Exclude:
     - 'test/application_test.rb'
