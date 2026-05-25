@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # rbs_inline: enabled
 
 require 'minitest/autorun'
@@ -13,7 +14,7 @@ class ApplicationTest < Minitest::Test
 
   def teardown
     destination_dir = File.join(base_dir, year)
-    FileUtils.rm_rf(destination_dir) if Dir.exist?(destination_dir)
+    FileUtils.rm_rf(destination_dir)
     FileUtils.rm_rf(base_dir) if no_template?
   end
 
@@ -23,8 +24,9 @@ class ApplicationTest < Minitest::Test
 
   def check_template_files(unit)
     filepath           = File.join('..', 'testing_file_lists', "#{unit}_templates.txt")
-    expected_templates = File.open(filepath).read.split("\n")
+    expected_templates = File.read(filepath).split("\n")
     actual_templates   = Dir[template_files]
+
     assert_equal(expected_templates, actual_templates)
   end
 
