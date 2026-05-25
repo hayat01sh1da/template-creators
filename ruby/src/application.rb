@@ -10,7 +10,7 @@ class Application
   class DigitLengthError < StandardError; end
 
   USERNAMES           = ['hayat01sh1da'].freeze
-  BODY_TEMPLATE       = File.read(File.join(__dir__, 'body_template.md')).freeze
+  BODY_TEMPLATE       = File.read(File.join('..', 'markdown', 'body_template.md')).freeze
   FULL_UNITS          = { 'd' => 'daily', 'w' => 'weekly', 'm' => 'monthly' }.freeze
   MONTHS_WITH_30_DAYS = %w[April June September November].freeze
 
