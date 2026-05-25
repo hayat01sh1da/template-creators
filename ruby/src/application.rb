@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # rbs_inline: enabled
 
 require 'date'
@@ -59,25 +60,26 @@ class Application
 
   # @rbs return: void
   def run
-    Date::MONTHNAMES.compact.each.with_index(1) { |month, i|
-      index     = sprintf('%02d', i)
+    Date::MONTHNAMES.compact.each.with_index(1) do |month, i|
+      index     = format('%02d', i)
       directory = File.join('..', '..', 'working-report', username, year, "#{index}_#{month}")
       case unit
       when 'd', 'w'
-        create_templates(month) { |d|
-          day = sprintf('%02d', d)
+        create_templates(month) do |d|
+          day = format('%02d', d)
           if unit == 'd'
             next if is_weekend?(i, d)
-            export_template(directory:, index:, day:, month:)
+
           else
             next unless is_monday?(i, d)
-            export_template(directory:, index:, day:, month:)
+
           end
-        }
+          export_template(directory:, index:, day:, month:)
+        end
       when 'm'
         export_template(directory:, index:, month:)
       end
-    }
+    end
   end
 
   private
@@ -178,25 +180,24 @@ class Application
     date     << "#{day} " unless day.empty?
     date     << "#{month} #{year}"
     filename = File.join(directory, "#{year}#{index}#{day}_#{full_unit}_working_report.md")
-    FileUtils.mkdir_p(directory) unless Dir.exist?(directory)
-    IO.write(filename, body(date.join)) unless File.exist?(filename)
+    FileUtils.mkdir_p(directory)
+    File.write(filename, body(date.join)) unless File.exist?(filename)
   end
 
   # @rbs month: String
   # @rbs return: void
   def create_templates(month, &)
-    1.upto(31).each { |d|
+    1.upto(31).each do |d|
       case month
       when 'February'
         next if is_leap_year? && d > 29
         next if d > 28
-        yield(d)
+
       when 'April', 'June', 'September', 'November'
         next if d > 30
-        yield(d)
-      else
-        yield(d)
+
       end
-    }
+      yield(d)
+    end
   end
 end
