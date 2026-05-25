@@ -1,5 +1,7 @@
 # Generated from src/application.rb with RBS::Inline
 
+# Generates working-report markdown templates for a username under
+# `../../working-report/<username>/<year>/`, one file per day, week, or month.
 class Application
   class ValueError < StandardError
   end
@@ -8,6 +10,12 @@ class Application
   end
 
   USERNAMES: untyped
+
+  BODY_TEMPLATE: untyped
+
+  FULL_UNITS: untyped
+
+  MONTHS_WITH_30_DAYS: untyped
 
   # @rbs username: String
   # @rbs unit: String
@@ -41,36 +49,54 @@ class Application
 
   attr_reader year: untyped
 
+  # @rbs month: String
+  # @rbs month_index: Integer
+  # @rbs index: String
+  # @rbs directory: String
+  # @rbs return: void
+  def process_month: (String month, Integer month_index, String index, String directory) -> void
+
+  # @rbs month: String
+  # @rbs month_index: Integer
+  # @rbs index: String
+  # @rbs directory: String
+  # @rbs return: void
+  def process_days: (String month, Integer month_index, String index, String directory) -> void
+
+  # @rbs month_index: Integer
+  # @rbs day: Integer
+  # @rbs return: bool
+  def skip_day?: (Integer month_index, Integer day) -> bool
+
   # @rbs return: String
   def full_unit: () -> String
 
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def is_monday?: (Integer month, Integer day) -> bool
+  def monday?: (Integer month, Integer day) -> bool
 
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def is_saturday?: (Integer month, Integer day) -> bool
+  def saturday?: (Integer month, Integer day) -> bool
 
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def is_sunday?: (Integer month, Integer day) -> bool
+  def sunday?: (Integer month, Integer day) -> bool
 
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def is_weekend?: (Integer month, Integer day) -> bool
+  def weekend?: (Integer month, Integer day) -> bool
 
   # @rbs return: bool
-  def is_leap_year?: () -> bool
+  def leap_year?: () -> bool
 
-  # @rbs array: Array[untyped]
   # @rbs date: String
   # @rbs return: String
-  def body: (String date, ?Array[untyped] array) -> String
+  def body: (String date) -> String
 
   # @rbs directory: String
   # @rbs index: String
@@ -83,4 +109,9 @@ class Application
   # @rbs month: String
   # @rbs return: void
   def create_templates: (String month) ?{ (?) -> untyped } -> void
+
+  # @rbs month: String
+  # @rbs day: Integer
+  # @rbs return: bool
+  def skip_day_of_month?: (String month, Integer day) -> bool
 end
