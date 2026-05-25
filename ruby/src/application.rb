@@ -188,16 +188,20 @@ class Application
   # @rbs return: void
   def create_templates(month, &)
     1.upto(31).each do |d|
-      case month
-      when 'February'
-        next if leap_year? && d > 29
-        next if d > 28
+      next if skip_day_of_month?(month, d)
 
-      when 'April', 'June', 'September', 'November'
-        next if d > 30
-
-      end
       yield(d)
+    end
+  end
+
+  # @rbs month: String
+  # @rbs day: Integer
+  # @rbs return: bool
+  def skip_day_of_month?(month, day)
+    case month
+    when 'February'                                  then day > (leap_year? ? 29 : 28)
+    when 'April', 'June', 'September', 'November'    then day > 30
+    else false
     end
   end
 end
