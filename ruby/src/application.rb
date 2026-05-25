@@ -68,10 +68,10 @@ class Application
         create_templates(month) do |d|
           day = format('%02d', d)
           if unit == 'd'
-            next if is_weekend?(i, d)
+            next if weekend?(i, d)
 
           else
-            next unless is_monday?(i, d)
+            next unless monday?(i, d)
 
           end
           export_template(directory:, index:, day:, month:)
@@ -103,34 +103,34 @@ class Application
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def is_monday?(month, day)
+  def monday?(month, day)
     Time.new(year, month, day).monday?
   end
 
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def is_saturday?(month, day)
+  def saturday?(month, day)
     Time.new(year, month, day).saturday?
   end
 
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def is_sunday?(month, day)
+  def sunday?(month, day)
     Time.new(year, month, day).sunday?
   end
 
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def is_weekend?(month, day)
+  def weekend?(month, day)
     date = Time.new(year, month, day)
     date.saturday? || date.sunday?
   end
 
   # @rbs return: bool
-  def is_leap_year?
+  def leap_year?
     (year.to_i % 400).zero? || (!!(year.to_i % 100).nonzero? && (year.to_i % 4).zero?)
   end
 
@@ -190,7 +190,7 @@ class Application
     1.upto(31).each do |d|
       case month
       when 'February'
-        next if is_leap_year? && d > 29
+        next if leap_year? && d > 29
         next if d > 28
 
       when 'April', 'June', 'September', 'November'
