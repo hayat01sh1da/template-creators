@@ -30,7 +30,7 @@ def run_template_creator(c: Context) -> None:
         if value:
             params[key] = value
 
-    Application(**params).run()
+    Application.run(**params)
 
 
 @task(default=True)
