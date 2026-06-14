@@ -1,8 +1,8 @@
 ## 1. Environment
 
 - Ruby 4.0.5
-- Gemfile 4.0.12
-- Bundler 4.0.12
+- Gemfile 4.0.14
+- Bundler 4.0.14
 
 ## 2. Install Gems via Gemfile and Bundler
 
