@@ -79,16 +79,6 @@ class Application
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def saturday?: (Integer month, Integer day) -> bool
-
-  # @rbs month: Integer
-  # @rbs day: Integer
-  # @rbs return: bool
-  def sunday?: (Integer month, Integer day) -> bool
-
-  # @rbs month: Integer
-  # @rbs day: Integer
-  # @rbs return: bool
   def weekend?: (Integer month, Integer day) -> bool
 
   # @rbs return: bool
