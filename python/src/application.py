@@ -104,14 +104,8 @@ class Application:
     def _monday(self, month: int, day: int) -> bool:
         return datetime.date(int(self._year), month, day).weekday() == 0
 
-    def _saturday(self, month: int, day: int) -> bool:
-        return datetime.date(int(self._year), month, day).weekday() == 5
-
-    def _sunday(self, month: int, day: int) -> bool:
-        return datetime.date(int(self._year), month, day).weekday() == 6
-
     def _weekend(self, month: int, day: int) -> bool:
-        return self._saturday(month, day) or self._sunday(month, day)
+        return datetime.date(int(self._year), month, day).weekday() >= 5
 
     def _leap_year(self) -> bool:
         y = int(self._year)
