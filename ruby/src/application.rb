@@ -124,20 +124,6 @@ class Application
   # @rbs month: Integer
   # @rbs day: Integer
   # @rbs return: bool
-  def saturday?(month, day)
-    Time.new(year, month, day).saturday?
-  end
-
-  # @rbs month: Integer
-  # @rbs day: Integer
-  # @rbs return: bool
-  def sunday?(month, day)
-    Time.new(year, month, day).sunday?
-  end
-
-  # @rbs month: Integer
-  # @rbs day: Integer
-  # @rbs return: bool
   def weekend?(month, day)
     date = Time.new(year, month, day)
     date.saturday? || date.sunday?
