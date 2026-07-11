@@ -29,6 +29,7 @@ jobs:
         run: |
           gem update --system
           gem install bundler
+          bundle update --bundler
           bundle update --all
       - name: Mirror Updated Versions to Gemfile
         working-directory: ./ruby
@@ -54,6 +55,7 @@ jobs:
           ~~~console
           gem update --system
           gem install bundler
+          bundle update --bundler
           bundle update --all
           ~~~
 
@@ -84,7 +86,7 @@ jobs:
             ruby/Gemfile
             ruby/Gemfile.lock
           commit-message: "[Daily][Ruby] Update Gem dependencies"
-          title: "[Daily][Ruby] Update Gem dependencies"
+          title: "[Daily][Ruby] Update Gem Dependencies"
           body-path: ${{ runner.temp }}/pr_body.md
           reviewers: hayat01sh1da
           assignees: hayat01sh1da
