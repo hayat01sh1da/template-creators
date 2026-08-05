@@ -11,7 +11,7 @@
 | Ruby generators   | Ruby 4.0.6 (`.ruby-version`)       | Uses Ruby stdlib; add gems per script if needed.                            |
 | Gemfile           | 4.0.16                             | Per-project dependency manifest; versions install via Bundler.              |
 | Bundler           | 4.0.16                             | Resolves and installs the gems declared in the Gemfile.                     |
-| Python generators | CPython 3.14.6 (`.python-version`) | Uses Python stdlib; add `requirements.txt` if introducing third-party libs. |
+| Python generators | CPython 3.14.7 (`.python-version`) | Uses Python stdlib; add `requirements.txt` if introducing third-party libs. |
 
 ## Backward Compatibility
 
