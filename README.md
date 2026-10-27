@@ -1,10 +1,10 @@
 [![Actions Status: CI - Python](https://github.com/hayat01sh1da/template-creators/workflows/CI%20-%20Python/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22CI%20-%20Python%22)
-[![Actions Status: Daily Dependencies Update - Python](https://github.com/hayat01sh1da/template-creators/workflows/Daily%20Dependencies%20Update%20-%20Python/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22Daily%20Dependencies%20Update%20-%20Python%22)
-[![Actions Status: Daily Runtime Update - Python](https://github.com/hayat01sh1da/template-creators/workflows/Daily%20Runtime%20Update%20-%20Python/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22Daily%20Runtime%20Update%20-%20Python%22)
 [![Actions Status: CI - Ruby](https://github.com/hayat01sh1da/template-creators/workflows/CI%20-%20Ruby/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22CI%20-%20Ruby%22)
-[![Actions Status: Daily Dependencies Update - Ruby](https://github.com/hayat01sh1da/template-creators/workflows/Daily%20Dependencies%20Update%20-%20Ruby/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22Daily%20Dependencies%20Update%20-%20Ruby%22)
-[![Actions Status: Daily Runtime Update - Ruby](https://github.com/hayat01sh1da/template-creators/workflows/Daily%20Runtime%20Update%20-%20Ruby/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22Daily%20Runtime%20Update%20-%20Ruby%22)
 [![Actions Status: CodeQL](https://github.com/hayat01sh1da/template-creators/workflows/CodeQL/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22CodeQL%22)
+[![Actions Status: Daily Dependencies Update - Python](https://github.com/hayat01sh1da/template-creators/workflows/Daily%20Dependencies%20Update%20-%20Python/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22Daily%20Dependencies%20Update%20-%20Python%22)
+[![Actions Status: Daily Dependencies Update - Ruby](https://github.com/hayat01sh1da/template-creators/workflows/Daily%20Dependencies%20Update%20-%20Ruby/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22Daily%20Dependencies%20Update%20-%20Ruby%22)
+[![Actions Status: Daily Runtime Update - Python](https://github.com/hayat01sh1da/template-creators/workflows/Daily%20Runtime%20Update%20-%20Python/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22Daily%20Runtime%20Update%20-%20Python%22)
+[![Actions Status: Daily Runtime Update - Ruby](https://github.com/hayat01sh1da/template-creators/workflows/Daily%20Runtime%20Update%20-%20Ruby/badge.svg)](https://github.com/hayat01sh1da/template-creators/actions?query=workflow%3A%22Daily%20Runtime%20Update%20-%20Ruby%22)
 
 ## 1. Common Environment
 
